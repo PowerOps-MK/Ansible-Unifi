@@ -5,7 +5,7 @@ from ansible.module_utils.basic import *
 
 def main():
     fields = {
-        "name": {"required": True, "type": "str", "default": "test"}
+        "name": {"type": "str", "default": "test"}
     }
 
     module = AnsibleModule(argument_spec=fields)
