@@ -15,7 +15,14 @@ def repo_absent(data=None):
 
 
 def main():
-    fields = {"name": {"type": "str", "default": "test"}, "state": {"default": "present", "choices": ["present", "absent"], "type": "str"}}
+    fields = {
+        "name": {"type": "str", "default": "test"},
+        "state": {
+            "default": "present",
+            "choices": ["present", "absent"],
+            "type": "str",
+        },
+    }   
     choice_map = {"present": repo_present, "absent": repo_absent}
 
     module = AnsibleModule(argument_spec=fields)
