@@ -1,2 +1,2 @@
 # ansible-unifi
-A private-visible repository created by Terraform
+A Ansiblr repository for configuring a Ubiquiti Unifi Network
