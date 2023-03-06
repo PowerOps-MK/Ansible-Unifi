@@ -8,7 +8,7 @@ on:
   push:
     branches: [master, main]
     paths:
-      - "Ansible/**"
+      - "ansible_unifi_network/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,63 +27,14 @@ jobs:
     # Setup defaults for the steps within a job
     defaults:
       run:
-        working-directory: ./Ansible
+        working-directory: ./ansible_unifi_network
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v3
-
-      # Copy config files to workingdir 
-      - name: Copy config files
-        run: cp ./ansible.cfg ./.ansible-lint ../
-
-      # Install required dependencies from requirements.yaml
-      - name: Install dependencies
-        run: ansible-galaxy collection install -r ./requirements.yaml -p ../collections
-
-      # Run ansible-lint on config files
-      - name: Lint Code Base
-        uses: github/super-linter/slim@v4
-        env: 
-          VALIDATE_ANSIBLE: true
-          ANSIBLE_DIRECTORY: Ansible
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # Run the playbooks against the hosts
-  deploy:
-    # The type of runner that the job will run on
-    runs-on: self-hosted
-    # Define dependency's between jobs
-    needs: test
-    # Setup defaults for the steps within a job
-    defaults:
-      run:
-        working-directory: ./Ansible
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      # Replace secrets in the playbooks
-      - name: Replace secrets
-        run: |
-          sed -i 's;XX_USER_PASSWORD;${{ secrets.USER_PASSWORD }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_USER_NAME;${{ secrets.USER_NAME }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_USER_PUBLIC;${{ secrets.USER_PUBLIC }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_SFTP_PUBLIC;${{ secrets.SFTP_PUBLIC }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_IP;${{ secrets.K3S0_IP }};g' ./inventory/hosts.yaml        
-          sed -i 's;XX_SSH_PORT;${{ secrets.SSH_PORT }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_K3S1_IP;${{ secrets.K3S1_IP }};g' ./inventory/hosts.yaml
-          sed -i 's;XX_K3S_TOKEN;${{ secrets.K3S_TOKEN }};g' ./inventory/hosts.yaml
 
       # Run the playbook against the hosts
       - name: Apply playbook 
         run: ansible-playbook ./playbooks/*.yaml
-
-      # Cleanup the work dir on the runner
-      - name: Runner cleanup
-        run: rm -rf ${{ github.workspace }}/*
