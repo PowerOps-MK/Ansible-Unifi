@@ -4,7 +4,7 @@ from ansible.module_utils.basic import *
 
 
 def main():
-    field = {
+    fields = {
         "name": {"required": True, "type": "str", "default": "test"}
     }
 
