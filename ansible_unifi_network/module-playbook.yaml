@@ -2,10 +2,10 @@
 - name: Test custom module
   hosts: localhost
   tasks:
-  - name: rhn the custom module
+  - name: Run the custom module
     unifi:
       name: "hello"
-      new: true
+      state: present
     register: testout
   - name: dump test output
     debug:
