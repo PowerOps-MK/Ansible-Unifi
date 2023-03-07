@@ -67,7 +67,7 @@ def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type="str", required=True),
-        state=dict(type="str", default="present", choices= ["present", "absent"])
+        state=dict(type="str", default="present", choices= ["present", "absent"]),
     )
 
     # seed the result dict in the object
@@ -75,11 +75,7 @@ def run_module():
     # changed is if this module effectively modified the target
     # state will include any data that you want your module to pass back
     # for consumption, for example, in a subsequent task
-    result = dict(
-        changed=False,
-        original_message='',
-        message=''
-    )
+    result = dict(changed=False, original_message="", message="")
 
     print(result)
 
