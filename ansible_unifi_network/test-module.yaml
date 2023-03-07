@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - name: Test the module
+      unifi: 
+        register: result
+    - debug: var=result 
