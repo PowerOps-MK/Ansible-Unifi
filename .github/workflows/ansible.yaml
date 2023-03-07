@@ -37,7 +37,7 @@ jobs:
 
       # Test the module sanity
       - name: Test module 
-        run: ansible-test sanity -v ./library/unifi
+        run: ansible-test sanity -v --venv --python 3.10 unifi
 
       # Run the playbook against the hosts
       - name: Apply playbook 
