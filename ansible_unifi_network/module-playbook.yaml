@@ -1,0 +1,12 @@
+---
+- name: Test custom module
+  hosts: localhost
+  tasks:
+  - name: rhn the custom module
+    unifi:
+      name: "hello"
+      new: true
+    register: testout
+  - name: dump test output
+    debug:
+      msg: "{{ testout }}"
