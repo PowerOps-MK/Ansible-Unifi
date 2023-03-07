@@ -37,4 +37,4 @@ jobs:
 
       # Run the playbook against the hosts
       - name: Apply playbook 
-        run: ansible-playbook ./playbooks/*.yaml
+        run: ansible-playbook ./*.yaml
