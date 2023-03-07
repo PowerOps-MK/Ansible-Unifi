@@ -1,4 +1,4 @@
-# Ansible-Unifi - Ansible Module
+# Unifi - Ansible Module
 A Ansible module for configuring a Ubiquiti Unifi Network
 
 ## Usage
