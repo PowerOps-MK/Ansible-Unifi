@@ -4,6 +4,6 @@
     - name: Test the custom module
       unifi:
         name: "mktest"
-        state: present
+        state: absent
       register: result
     - debug: var=result 
