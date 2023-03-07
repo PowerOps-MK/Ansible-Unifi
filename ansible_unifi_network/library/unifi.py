@@ -68,7 +68,7 @@ def run_module():
     module_args = dict(
         name=dict(type="str", required=True),
         state=dict(type="str", default="present", choices=["present", "absent"]),
-     )
+    )
 
     # seed the result dict in the object
     # we primarily care about changed and state
