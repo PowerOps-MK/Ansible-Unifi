@@ -1,6 +1,9 @@
+---
 - hosts: localhost
   tasks:
-    - name: Test the module
-      unifi: 
-        register: result
+    - name: Test the custom module
+      unifi:
+        name: "mktest"
+        state: present
+      register: result
     - debug: var=result 
