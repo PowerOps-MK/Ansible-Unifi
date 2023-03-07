@@ -67,8 +67,8 @@ def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type="str", required=True),
-        state=dict(type="str", default="present", choices= ["present", "absent"]),
-    )
+        state=dict(type="str", default="present", choices=["present", "absent"]),
+     )
 
     # seed the result dict in the object
     # we primarily care about changed and state
