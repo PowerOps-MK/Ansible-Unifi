@@ -35,6 +35,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Test the module sanity
+      - name: Test module 
+        run: ansible-test sanity --test validate-modules unifi
+
       # Run the playbook against the hosts
       - name: Apply playbook 
         run: ansible-playbook ./*.yaml
