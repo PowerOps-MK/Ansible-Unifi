@@ -2,5 +2,6 @@
   tasks:
     - name: Test the module
       unifi: 
-        register: result
+      register: result
+
     - debug: var=result 
