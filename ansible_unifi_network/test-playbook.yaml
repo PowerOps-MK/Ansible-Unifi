@@ -5,7 +5,7 @@
   - name: Run the custom module
     unifi:
       name: "hello"
-      state: present
+      state: absent
     register: testout
   - name: dump test output
     debug:
