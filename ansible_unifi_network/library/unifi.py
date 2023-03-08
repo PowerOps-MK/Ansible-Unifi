@@ -98,7 +98,7 @@ def group_present(module):
     module.exit_json(**result)
 
 def group_absent(module):
-    
+    result["message"] = "absent mode"
     module.exit_json(**result)
 
 def main():
