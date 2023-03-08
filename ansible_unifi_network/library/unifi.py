@@ -63,7 +63,7 @@ message:
 """
 
 
-def run_module():
+def group_present():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type="str", required=True),
@@ -109,10 +109,21 @@ def run_module():
     # simple AnsibleModule.exit_json(), passing the key/value results
     module.exit_json(**result)
 
+def group_absent():
+    module.exit_json(**result)
 
 def main():
-    run_module()
+    module_args = dict(
+        name=dict(type="str", required=True),
+        state=dict(type="str", default="present", choices=["present", "absent"]),
+    )
+    choice_map = {
+      "present": group_present,
+      "absent": group_absent
+    }
 
+    module = AnsibleModule(argument_spec=fields)
+    choice_map.get(module.params["state"])(module.params)
 
 if __name__ == "__main__":
     main()
