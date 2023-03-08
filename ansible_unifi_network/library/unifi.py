@@ -63,7 +63,7 @@ message:
 """
 
 
-def group_present():
+def group_present(data):
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type="str", required=True),
@@ -109,7 +109,8 @@ def group_present():
     # simple AnsibleModule.exit_json(), passing the key/value results
     module.exit_json(**result)
 
-def group_absent():
+def group_absent(data):
+    
     module.exit_json(**result)
 
 def main():
