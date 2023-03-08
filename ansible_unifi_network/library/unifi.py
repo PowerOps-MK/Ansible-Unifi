@@ -63,28 +63,20 @@ message:
 """
 
 
-def group_present(module):
+def group_present(module_param):
     # seed the result dict in the object
-    result = dict(message="")
+    result = dict(result="")
 
-    # if check mode, return the current state
-    if module.check_mode:
-        module.exit_json(**result)
-
-    result["message"] = module.params["name"]
-
-    # When exception occurs
-    if module.params["name"] == "fail":
-        module.fail_json(msg="You requested this to fail", **result)
+    result["result"] = module_param["name"]
 
     return True, result
 
 
-def group_absent(module):
+def group_absent(module_param):
     # seed the result dict in the object
-    result = dict(message="")
+    result = dict(result="")
 
-    result["message"] = "absent mode"
+    result["result"] = module_param["state"]
 
     return True, result
 
@@ -95,19 +87,25 @@ def main():
         name=dict(type="str", required=True),
         state=dict(type="str", default="present", choices=["present", "absent"]),
     )
-    choice_map = {
-      "present": group_present,
-      "absent": group_absent
-    }
-    
+    choice_map = {"present": group_present, "absent": group_absent}
+
     # AnsibleModule object for abstraction of Ansible
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
-    
+
+    # if check mode, return the current state
+    if module.check_mode:
+        return True, result
+
+    # When exception occurs
+    if module.params["name"] == "fail":
+        module.fail_json(msg="You requested this to fail", **result)
+
     # Run function based on passed state
-    has_changed, result = choice_map.get(module.params["state"])(module)
-    
+    has_changed, result = choice_map.get(module.params["state"])(module.params)
+
     # Return message as output
     module.exit_json(changed=has_changed, meta=result)
+
 
 if __name__ == "__main__":
     main()
