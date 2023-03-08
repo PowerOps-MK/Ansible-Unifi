@@ -4,8 +4,8 @@
   tasks:
   - name: Run the custom module
     unifi:
-      name: "fail"
-      state: absent
+      name: "unifi test"
+      state: present
     register: testout
   - name: dump test output
     debug:
