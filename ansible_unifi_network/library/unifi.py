@@ -65,41 +65,25 @@ message:
 
 def group_present(module):
     # seed the result dict in the object
-    # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
-    result = dict(changed=False, original_message="", message="")
+    result = dict(message="")
 
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
+    # if check mode, return the current state
     if module.check_mode:
         module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result["original_message"] = module.params["name"]
-    result["message"] = "goodbye"
+    result["message"] = module.params["name"]
 
-    # use whatever logic you need to determine whether or not this module
-    # made any modifications to your target
-    if module.params["state"] == "present":
-        result["changed"] = True
-
-    # during the execution of the module, if there is an exception or a
-    # conditional state that effectively causes a failure, run
-    # AnsibleModule.fail_json() to pass in the message and the result
+    # When exception occurs
     if module.params["name"] == "fail":
         module.fail_json(msg="You requested this to fail", **result)
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
-    module.exit_json(**result)
+    return True, result
 
 
 def group_absent(module):
+    # seed the result dict in the object
     result = dict(message="")
+
     result["message"] = "absent mode"
 
     return True, result
@@ -115,10 +99,14 @@ def main():
       "present": group_present,
       "absent": group_absent
     }
-
+    
     # AnsibleModule object for abstraction of Ansible
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    
+    # Run function based on passed state
     has_changed, result = choice_map.get(module.params["state"])(module)
+    
+    # Return message as output
     module.exit_json(changed=has_changed, meta=result)
 
 if __name__ == "__main__":
