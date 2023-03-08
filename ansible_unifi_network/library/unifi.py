@@ -94,11 +94,11 @@ def main():
 
     # if check mode, return the current state
     if module.check_mode:
-        return True, result
+        module.exit_json(changed=False)
 
     # When exception occurs
     if module.params["name"] == "fail":
-        module.fail_json(msg="You requested this to fail", **result)
+        module.fail_json(msg="You requested this to fail")
 
     # Run function based on passed state
     has_changed, result = choice_map.get(module.params["state"])(module.params)
