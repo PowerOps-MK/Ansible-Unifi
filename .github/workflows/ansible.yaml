@@ -27,7 +27,7 @@ jobs:
     # Setup defaults for the steps within a job
     defaults:
       run:
-        working-directory: ./ansible_unifi_network
+        working-directory: ./ansible.unifi
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
