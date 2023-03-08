@@ -61,24 +61,29 @@ message:
 """
 
 
-def group_present(module_param):
-    # seed the result dict in the object
-    result = dict(result="")
-
-    result["result"] = module_param["name"]
-
-    return True, result
-
-
-def group_absent(module_param):
-    # seed the result dict in the object
-    result = dict(result="")
-
-    result["result"] = module_param["state"]
-
-    return True, result
+# Apply config if not present
+def present(module):
+    try:
+        # Create result dict
+        result = dict(result=module.params["name"])
+    
+        return True, result
+    except BaseException:
+        module.fail_json(msg="Ensuring config has failed")
 
 
+# Remove config if not present
+def absent(module):
+    try:
+        # Create result dict
+        result = dict(result=module.params["state"])
+    
+        return True, result
+    except BaseException:
+        module.fail_json(msg="Removing config has failed")
+
+
+# Run basic Ansible function
 def main():
     # AnsibleModule object with parameters for abstraction
     module = AnsibleModule(
@@ -89,18 +94,14 @@ def main():
         supports_check_mode=True,
     )
 
-    choice_map = {"present": group_present, "absent": group_absent}
+    choice_map = {"present": present, "absent": absent}
 
     # if check mode, return the current state
     if module.check_mode:
         module.exit_json(changed=False)
 
     # Run function based on the passed state
-    changed, result = choice_map.get(module.params["state"])(module.params)
-
-    # When exception occurs
-    if module.params["name"] == "fail":
-        module.fail_json(msg="You requested this to fail")
+    changed, result = choice_map.get(module.params["state"])(module)
 
     # Return message as output
     module.exit_json(changed=changed, meta=result)
