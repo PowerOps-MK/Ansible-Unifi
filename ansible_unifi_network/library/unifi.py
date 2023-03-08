@@ -99,7 +99,7 @@ def group_present(module):
 
 
 def group_absent(module):
-    result = dict(changed=False, message="")
+    result = dict(message="")
     result["message"] = "absent mode"
 
     return True, result
