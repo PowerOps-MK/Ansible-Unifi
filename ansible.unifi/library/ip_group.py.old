@@ -9,50 +9,10 @@ def main():
         supports_check_mode=True,
     )
 
-    if not HAS_SELINUX:
-        module.fail_json(msg=missing_required_lib('libselinux-python'), exception=SELINUX_IMP_ERR)
-
     # global vars
     changed = False
     msgs = []
-    configfile = module.params['configfile']
-    policy = module.params['policy']
     state = module.params['state']
-    update_kernel_param = module.params['update_kernel_param']
-    runtime_enabled = selinux.is_selinux_enabled()
-    runtime_policy = selinux.selinux_getpolicytype()[1]
-    runtime_state = 'disabled'
-    kernel_enabled = None
-    reboot_required = False
-
-    if runtime_enabled:
-        # enabled means 'enforcing' or 'permissive'
-        if selinux.security_getenforce():
-            runtime_state = 'enforcing'
-        else:
-            runtime_state = 'permissive'
-
-    if not os.path.isfile(configfile):
-        module.fail_json(msg="Unable to find file {0}".format(configfile),
-                         details="Please install SELinux-policy package, "
-                                 "if this package is not installed previously.")
-
-    config_policy = get_config_policy(configfile)
-    config_state = get_config_state(configfile)
-    if update_kernel_param:
-        try:
-            grubby_bin = get_bin_path('grubby')
-        except ValueError:
-            grubby_bin = None
-        kernel_enabled = get_kernel_enabled(module, grubby_bin)
-
-    # check to see if policy is set if state is not 'disabled'
-    if state != 'disabled':
-        if not policy:
-            module.fail_json(msg="Policy is required if state is not 'disabled'")
-    else:
-        if not policy:
-            policy = config_policy
 
     # check changed values and run changes
     if policy != runtime_policy:
