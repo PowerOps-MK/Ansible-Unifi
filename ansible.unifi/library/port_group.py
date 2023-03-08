@@ -64,6 +64,8 @@ message:
 # Apply config if not present
 def present(module):
     try:
+        
+
         # Create result dict
         result = dict(result=module.params["name"])
     
