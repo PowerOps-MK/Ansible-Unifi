@@ -122,7 +122,7 @@ def main():
       "absent": group_absent
     }
 
-    module = AnsibleModule(argument_spec=fields)
+    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
     choice_map.get(module.params["state"])(module.params)
 
 if __name__ == "__main__":
