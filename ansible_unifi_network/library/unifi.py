@@ -100,7 +100,7 @@ def main():
     if module.params["name"] == "fail":
         module.fail_json(msg="You requested this to fail")
 
-    # Run function based on passed state
+    # Run function based on the passed state
     has_changed, result = choice_map.get(module.params["state"])(module.params)
 
     # Return message as output
