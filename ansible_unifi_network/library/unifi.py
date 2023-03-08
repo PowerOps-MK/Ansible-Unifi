@@ -63,7 +63,13 @@ message:
 """
 
 
-def group_present(data):
+def group_present(module):
+    # if the user is working with this module in only check mode we do not
+    # want to make any changes to the environment, just return the current
+    # state with no modifications
+    if module.check_mode:
+        module.exit_json(**result)
+
     # seed the result dict in the object
     # we primarily care about changed and state
     # changed is if this module effectively modified the target
@@ -91,7 +97,7 @@ def group_present(data):
     # simple AnsibleModule.exit_json(), passing the key/value results
     module.exit_json(**result)
 
-def group_absent(data):
+def group_absent(module):
     
     module.exit_json(**result)
 
@@ -111,15 +117,7 @@ def main():
     # args/params passed to the execution, as well as if the module
     # supports check mode
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
-
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
-    if module.check_mode:
-        module.exit_json(**result)
-
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
-    choice_map.get(module.params["state"])(module.params)
+    choice_map.get(module.params["state"])(module)
 
 if __name__ == "__main__":
     main()
