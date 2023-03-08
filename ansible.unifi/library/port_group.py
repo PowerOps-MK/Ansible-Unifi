@@ -7,10 +7,8 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r"""
 ---
-module: my_test
+module: unifi.port_group
 short_description: This is my test module
-# If this is part of a collection, you need to use semantic versioning,
-# i.e. the version is of the form "2.5.0" and not "2.4".
 version_added: "1.0.0"
 description: This is my longer description explaining my test module.
 options:
@@ -29,7 +27,7 @@ options:
 extends_documentation_fragment:
     - my_namespace.my_collection.my_doc_fragment_name
 author:
-    - Your Name (@yourGitHubHandle)
+    - Mr PotatoHead (@PowerOps-MK)
 """
 
 EXAMPLES = r"""
@@ -82,29 +80,30 @@ def group_absent(module_param):
 
 
 def main():
-    # define parameters for the module
-    module_args = dict(
-        name=dict(type="str", required=True),
-        state=dict(type="str", default="present", choices=["present", "absent"]),
+    # AnsibleModule object with parameters for abstraction
+    module = AnsibleModule(
+        argument_spec=dict(
+            name=dict(type="str", required=True),
+            state=dict(type="str", default="present", choices=["present", "absent"]),
+        ),
+        supports_check_mode=True,
     )
-    choice_map = {"present": group_present, "absent": group_absent}
 
-    # AnsibleModule object for abstraction of Ansible
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    choice_map = {"present": group_present, "absent": group_absent}
 
     # if check mode, return the current state
     if module.check_mode:
         module.exit_json(changed=False)
 
+    # Run function based on the passed state
+    changed, result = choice_map.get(module.params["state"])(module.params)
+
     # When exception occurs
     if module.params["name"] == "fail":
         module.fail_json(msg="You requested this to fail")
 
-    # Run function based on the passed state
-    has_changed, result = choice_map.get(module.params["state"])(module.params)
-
     # Return message as output
-    module.exit_json(changed=has_changed, meta=result)
+    module.exit_json(changed=changed, meta=result)
 
 
 if __name__ == "__main__":
