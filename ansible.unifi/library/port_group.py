@@ -64,11 +64,10 @@ message:
 # Apply config if not present
 def present(module):
     try:
-        
 
         # Create result dict
         result = dict(result=module.params["name"])
-    
+
         return True, result
     except BaseException:
         module.fail_json(msg="Ensuring config has failed")
@@ -79,7 +78,7 @@ def absent(module):
     try:
         # Create result dict
         result = dict(result=module.params["state"])
-    
+
         return True, result
     except BaseException:
         module.fail_json(msg="Removing config has failed")
