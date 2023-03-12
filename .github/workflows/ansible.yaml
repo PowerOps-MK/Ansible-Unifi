@@ -45,4 +45,4 @@ jobs:
           mkdir new-collection
           cd new-collection
           ansible-galaxy collection init unifi.network
-          ls -l
+          ls -l ./unifi
