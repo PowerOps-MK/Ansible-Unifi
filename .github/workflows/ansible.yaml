@@ -50,4 +50,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: "/home/runner/work/ansible-unifi-network/ansible-unifi-network/ansible.unifi/new-collection/galaxy.yml"
+          path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/ansible.unifi/new-collection/unifi/network/galaxy.yml
