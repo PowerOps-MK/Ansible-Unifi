@@ -45,7 +45,7 @@ jobs:
           mkdir new-collection
           cd new-collection
           ansible-galaxy collection init unifi.network
-          ls -l ./unifi/network/roles
+          ls -l ./unifi/network/meta
 
       # Upload package-lock.json
      # - uses: actions/upload-artifact@v3
