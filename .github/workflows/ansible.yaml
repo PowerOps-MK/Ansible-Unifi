@@ -44,5 +44,14 @@ jobs:
         run: |
           mkdir new-collection
           cd new-collection
+          pwd
           ansible-galaxy collection init unifi.network
           ls -l ./unifi/network
+
+      # Upload package-lock.json
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /home/runner/work/galaxy.yml
+
+
