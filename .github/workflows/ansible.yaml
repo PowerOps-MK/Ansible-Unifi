@@ -39,11 +39,11 @@ jobs:
       - name: Apply playbook 
         run: ansible-playbook ./ansible.unifi/*.yaml
 
-      # Test the sanity
-      - name: Test module 
-        run: ls
+      # Test the sanity of collection
+      - name: Test sanity 
+        run: ansible-test sanity --docker -v --color --python 3.11
 
-      # Build the module 
+      # Build the collection 
       - name: Build the collection
         run: ansible-galaxy collection build
 
@@ -52,7 +52,7 @@ jobs:
         run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
 
       # Upload the build package
-      - uses: actions/upload-artifact@v3
-        with:
-          name: unifi-network-latest
-          path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/unifi-network-latest.tar.gz
+   #   - uses: actions/upload-artifact@v3
+     #   with:
+      #    name: unifi-network-latest
+      #    path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/unifi-network-latest.tar.gz
