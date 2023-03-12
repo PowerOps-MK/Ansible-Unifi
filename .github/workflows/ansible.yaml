@@ -27,7 +27,7 @@ jobs:
     # Setup defaults for the steps within a job
     defaults:
       run:
-        working-directory: ./ansible.unifi
+        working-directory: ./
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -37,9 +37,12 @@ jobs:
 
       # Run the playbook against the hosts
       - name: Apply playbook 
-        run: ansible-playbook ./*.yaml
+        run: ansible-playbook ./ansible.unifi/*.yaml
 
-      # Test the module sanity
+      # Test the sanity
       - name: Test module 
-        run: |
-          mkdir new-collection      
+        run: ls
+
+      # Build the module 
+      - name: Build the collection
+        run: ansible-galaxy collection build
