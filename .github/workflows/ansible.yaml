@@ -45,10 +45,10 @@ jobs:
           mkdir new-collection
           cd new-collection
           ansible-galaxy collection init unifi.network
-          ls -l ./unifi/network/meta
+          ls -l ./unifi/network/plugins
 
       # Upload package-lock.json
-     # - uses: actions/upload-artifact@v3
-      #  with:
-       #   name: my-artifact
-        #  path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/ansible.unifi/new-collection/unifi/network/meta/runtime.yml
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/ansible.unifi/new-collection/unifi/network/meta/runtime.yml
