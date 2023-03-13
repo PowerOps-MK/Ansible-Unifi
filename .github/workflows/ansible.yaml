@@ -51,8 +51,9 @@ jobs:
 
       # Rename build to latest
       - name: Rename the build artifact
-        run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
-
+        run: |
+          mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
+          pwd
       # Upload the build package
       - uses: actions/upload-artifact@v3
         with:
