@@ -71,8 +71,11 @@ jobs:
       # Run Unifi
       - name: Run Unifi
         run: |
-          docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -e TZ='Africa/Johannesburg' -v ~/unifi:/unifi --user unifi --name unifi jacobalberty/unifi
-          python3 ./tests/test.py
+          docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -e TZ='Africa/Johannesburg' -v ~/unifi:/unifi --name unifi jacobalberty/unifi
+          docker ps
+          ls -l /unifi
+
+# python3 ./tests/test.py
    
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
