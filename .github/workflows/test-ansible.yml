@@ -34,3 +34,7 @@ jobs:
       # Install the custom collection
       - name: Install collection 
         run: ansible-galaxy collection install git+https://github.com/powerops-mk/ansible-unifi-network.git
+
+      # Run the playbook against the hosts
+      - name: Apply playbook 
+        run: ansible-playbook ./ansible.unifi/*.yaml
