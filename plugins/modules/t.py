@@ -7,7 +7,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: t
 short_description: Adds or removes a user from a MongoDB database
@@ -16,27 +16,20 @@ description:
 version_added: "1.0.0"
 
 options:
-  replica_set:
-    description:
-      - Replica set to connect to (automatically connects to primary for writes).
-    type: str
-  database:
+  state:
     description:
       - The name of the database to add/remove the user from.
-    required: true
+    default: "present"
     type: str
-    aliases: [db]
   name:
     description:
       - The name of the user to add or remove.
     required: true
-    aliases: [user]
     type: str
 
 author:
-    - "Elliott Foster (@elliotttf)"
     - "Julien Thebault (@Lujeni)"
-'''
+"""
 
 EXAMPLES = r"""
 # Pass in a message
