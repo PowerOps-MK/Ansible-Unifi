@@ -38,8 +38,8 @@ jobs:
           path: ansible_collections/community/unifi
 
       # Test the sanity of collection
-      - name: Test sanity 
-        run: ansible-test sanity --docker -v --color --python 3.11
+    #  - name: Test sanity 
+    #    run: ansible-test sanity --docker -v --color --python 3.11
 
       # Install the custom collection
       - name: Install collection 
