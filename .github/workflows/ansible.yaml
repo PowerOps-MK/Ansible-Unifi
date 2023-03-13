@@ -8,7 +8,7 @@ on:
   push:
     branches: [master, main]
     paths:
-      - "ansible.unifi/**"
+      - "plugins/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
 
       # Run the playbook against the hosts
       - name: Apply playbook 
-        run: ansible-playbook ./ansible.unifi/*.yaml
+        run: ansible-playbook ./tests/*.yaml
 
       # Test the sanity of collection
       - name: Test sanity 
