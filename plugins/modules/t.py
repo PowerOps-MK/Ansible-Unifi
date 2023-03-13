@@ -5,20 +5,15 @@
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
-from ansible.module_utils.basic import AnsibleModule
 
 
 DOCUMENTATION = '''
 ---
-module: mongodb_user
+module: t
 short_description: Adds or removes a user from a MongoDB database
 description:
     - Adds or removes a user from a MongoDB database.
 version_added: "1.0.0"
-
-extends_documentation_fragment:
-  - community.mongodb.login_options
-  - community.mongodb.ssl_options
 
 options:
   replica_set:
@@ -37,51 +32,7 @@ options:
     required: true
     aliases: [user]
     type: str
-  password:
-    description:
-      - The password to use for the user.
-    type: str
-    aliases: [pass]
-  roles:
-    type: list
-    elements: raw
-    description:
-      - >
-          The database user roles valid values could either be one or more of the following strings:
-          'read', 'readWrite', 'dbAdmin', 'userAdmin', 'clusterAdmin', 'readAnyDatabase', 'readWriteAnyDatabase', 'userAdminAnyDatabase',
-          'dbAdminAnyDatabase'
-      - "Or the following dictionary '{ db: DATABASE_NAME, role: ROLE_NAME }'."
-      - "This param requires pymongo 2.5+. If it is a string, mongodb 2.4+ is also required. If it is a dictionary, mongo 2.6+ is required."
-  state:
-    description:
-      - The database user state.
-    default: present
-    choices: [absent, present]
-    type: str
-  update_password:
-    default: always
-    choices: [always, on_create]
-    description:
-      - C(always) will always update passwords and cause the module to return changed.
-      - C(on_create) will only set the password for newly created users.
-      - This must be C(always) to use the localhost exception when adding the first admin user.
-      - This option is effectively ignored when using x.509 certs. It is defaulted to 'on_create' to maintain a \
-          a specific module behaviour when the login_database is '$external'.
-    type: str
-  create_for_localhost_exception:
-    type: path
-    description:
-      - This is parmeter is only useful for handling special treatment around the localhost exception.
-      - If C(login_user) is defined, then the localhost exception is not active and this parameter has no effect.
-      - If this file is NOT present (and C(login_user) is not defined), then touch this file after successfully adding the user.
-      - If this file is present (and C(login_user) is not defined), then skip this task.
 
-notes:
-    - Requires the pymongo Python package on the remote host, version 2.4.2+. This
-      can be installed using pip or the OS package manager. Newer mongo server versions require newer
-      pymongo versions. @see http://api.mongodb.org/python/current/installation.html
-requirements:
-  - "pymongo"
 author:
     - "Elliott Foster (@elliotttf)"
     - "Julien Thebault (@Lujeni)"
@@ -116,6 +67,8 @@ message:
     returned: always
     sample: 'goodbye'
 """
+
+from ansible.module_utils.basic import AnsibleModule
 
 
 # Apply config if not present
