@@ -68,14 +68,15 @@ jobs:
       - name: Rename the build artifact
         run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
 
-      # Run Unifi
-      - name: Run Unifi
+      # Run Unifi Docker
+      - name: Run Unifi Docker
+        run: docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -e TZ='Africa/Johannesburg' -v ~/unifi:/unifi --name unifi jacobalberty/unifi
+         
+      # Get info
+      - name: Get info
         run: |
-          docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -e TZ='Africa/Johannesburg' -v ~/unifi:/unifi --name unifi jacobalberty/unifi
           sleep 2
-          ls -l ~/unifi/run
-
-# python3 ./tests/test.py
+          ls -l ~/unifi/data/db
    
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
