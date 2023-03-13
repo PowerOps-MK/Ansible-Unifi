@@ -70,7 +70,9 @@ jobs:
 
       # Run Unifi
       - name: Run Unifi
-        run: sudo apt-get install unifi
+        run: |
+          echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
+          sudo apt-get install unifi
 
           # docker run -d --name=unifi-controller -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -p 8443:8443 lscr.io/linuxserver/unifi-controller:latest
        #   python3 ./tests/test.py
