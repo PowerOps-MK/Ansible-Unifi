@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 module: t
 short_description: Adds or removes a user from a MongoDB database
@@ -31,9 +31,9 @@ options:
 
 author:
     - "Julien Thebault (@Lujeni)"
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 # Pass in a message
 - name: Test with a message
   my_namespace.my_collection.my_test:
@@ -47,9 +47,9 @@ EXAMPLES = r'''
 - name: Test failure of the module
   my_namespace.my_collection.my_test:
     name: fail me
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
 # These are examples of possible return values, and in general should use other names for return values.
 original_message:
     description: The original name param that was passed in.
@@ -61,7 +61,7 @@ message:
     type: str
     returned: always
     sample: 'goodbye'
-'''
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 
