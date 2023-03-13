@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
   - name: Run the custom module
-    port_group:
+    unifi.network.port_group:
       name: "unifi test"
       state: present
     register: testout
