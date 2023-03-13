@@ -54,7 +54,7 @@ jobs:
         run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
 
       # Upload the build package
-   #   - uses: actions/upload-artifact@v3
-     #   with:
-      #    name: unifi-network-latest
-      #    path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/unifi-network-latest.tar.gz
+      - uses: actions/upload-artifact@v3
+        with:
+          name: unifi-network-latest
+          path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/unifi-network-latest.tar.gz
