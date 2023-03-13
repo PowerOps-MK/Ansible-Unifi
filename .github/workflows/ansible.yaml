@@ -20,7 +20,7 @@ concurrency:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # Test the playbooks (YAML) 
+  # Test the collection
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -41,6 +41,19 @@ jobs:
       - name: Test sanity 
         run: ansible-test sanity --docker -v --color --python 3.11
 
+      # Install the custom collection
+      - name: Install collection 
+        run: ansible-galaxy collection install git+https://github.com/powerops-mk/ansible-unifi-network.git
+
+      # Run the playbook against the hosts
+      - name: Apply playbook 
+        run: ansible-playbook ./tests/*.yaml
+
+  # Deploy the collection 
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
       # Build the collection 
       - name: Build the collection
         run: ansible-galaxy collection build
@@ -53,4 +66,4 @@ jobs:
     #  - uses: actions/upload-artifact@v3
      #   with:
       #    name: unifi-network-latest
-      #    path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/ansible_collections/community/unifi/unifi-network-latest.tar.gz
+      #    path: /home/runner/work/ansible-unifi-network/ansible-unifi-network/unifi-network-latest.tar.gz
