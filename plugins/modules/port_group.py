@@ -3,7 +3,6 @@
 # (c) 2012, Elliott Foster <elliott@fourkitchens.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
@@ -11,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: t
+module: port_group
 short_description: Adds or removes a user from a MongoDB database
 description:
     - Adds or removes a user from a MongoDB database.
