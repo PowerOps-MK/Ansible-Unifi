@@ -75,8 +75,8 @@ jobs:
       # Get info
       - name: Get info
         run: |
-          sleep 10
-          ls -la ~/unifi/data/db
+          sleep 20
+          ls -l ~/unifi/data/db
    
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
