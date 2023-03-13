@@ -27,8 +27,6 @@ jobs:
     # Setup defaults for the steps within a job
     defaults:
       run:
-        working-directory: defaults:
-      run:
         working-directory: ansible_collections/community/unifi
 
     # Steps represent a sequence of tasks that will be executed as part of the job
