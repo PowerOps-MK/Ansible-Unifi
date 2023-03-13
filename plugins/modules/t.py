@@ -1,9 +1,6 @@
 #!/usr/bin/python
 
 # (c) 2012, Elliott Foster <elliott@fourkitchens.com>
-# Sponsored by Four Kitchens http://fourkitchens.com.
-# (c) 2014, Epic Games, Inc.
-#
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
@@ -11,7 +8,7 @@ __metaclass__ = type
 from ansible.module_utils.basic import AnsibleModule
 
 
-DOCUMENTATION = r"""
+DOCUMENTATION = r'''
 ---
 module: unifi.port_group
 short_description: This is my test module
@@ -34,7 +31,7 @@ extends_documentation_fragment:
     - my_namespace.my_collection.my_doc_fragment_name
 author:
     - Mr PotatoHead (@PowerOps-MK)
-"""
+'''
 
 EXAMPLES = r"""
 # Pass in a message
