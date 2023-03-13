@@ -53,6 +53,7 @@ jobs:
       - name: Rename the build artifact
         run: |
           mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
+          ansible-galaxy collection install git+https://github.com/powerops-mk/ansible-unifi-network.git
           
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
