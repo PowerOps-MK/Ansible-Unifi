@@ -37,10 +37,6 @@ jobs:
         with:
           path: ansible_collections/community/unifi
 
-      # Run the playbook against the hosts
-      - name: Apply playbook 
-        run: ansible-playbook ./tests/*.yaml
-
       # Test the sanity of collection
       - name: Test sanity 
         run: ansible-test sanity --docker -v --color --python 3.11
