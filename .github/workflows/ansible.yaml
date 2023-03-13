@@ -76,7 +76,7 @@ jobs:
       - name: Get info
         run: |
           sleep 5
-          ls -l ~/unifi/
+          ls -l ~/unifi/log
    
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
