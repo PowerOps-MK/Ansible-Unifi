@@ -19,7 +19,8 @@ options:
   state:
     description:
       - The name of the database to add/remove the user from.
-    default: "present"
+    default: 'present'
+    choices: ['present', 'absent']
     type: str
   name:
     description:
