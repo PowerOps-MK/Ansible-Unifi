@@ -67,7 +67,13 @@ jobs:
       # Rename build to latest
       - name: Rename the build artifact
         run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
-         
+
+      # Run Unifi
+      - name: Run Unifi
+        run: |
+          docker run -d --name=unifi-controller -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -p 8443:8443 lscr.io/linuxserver/unifi-controller:latest
+          docker ps
+   
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
      #   with:
