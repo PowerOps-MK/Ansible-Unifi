@@ -80,7 +80,9 @@ jobs:
 
        # Get info
       - name: Get info
-        run: ls -l ~/unifi
+        run: |
+          sleep 20
+          ls -l ~/unifi
       
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
