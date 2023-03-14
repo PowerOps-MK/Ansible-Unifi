@@ -45,6 +45,20 @@ jobs:
       - name: Install collection 
         run: ansible-galaxy collection install git+https://github.com/powerops-mk/ansible-unifi-network.git
 
+      # Unzip files for Unifi
+      - name: Unzip files
+        run: tar -xzvf ./tests/unifi.tar.gz -C ~
+   
+      # Run Unifi Docker and allow to start
+      - name: Run Unifi Docker
+        run: |
+          docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --network host --name unifi jacobalberty/unifi
+          sleep 10
+
+      # Run test Python script
+      - name: Run Python script
+        run: python3 ./tests/test.py
+
       # Run the playbook against the hosts
       - name: Apply playbook 
         run: ansible-playbook ./tests/*.yaml
@@ -68,21 +82,6 @@ jobs:
       - name: Rename the build artifact
         run: mv unifi-network-*.tar.gz unifi-network-latest.tar.gz
 
-      # Get info
-      - name: Get info
-        run: tar -xzvf ./tests/unifi.tar.gz -C ~
-   
-      # Run Unifi Docker
-      - name: Run Unifi Docker
-        run: docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --network host --name unifi jacobalberty/unifi
-
-       # Run test Python script
-      - name: Run Python script
-        run: |
-          sleep 20
-          curl https://localhost:8443/status --insecure
-          python3 ./tests/test.py
-      
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
       #  with:
