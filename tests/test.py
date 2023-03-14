@@ -6,7 +6,7 @@ from urllib3.exceptions import InsecureRequestWarning
 
 # Apply config if not present
 def present():
-    url = "https://localhost/api/s/default/rest/firewallgroup/"
+    url = "https://localhost:8443/api/s/default/rest/firewallgroup/"
     site = "default"
     username = "unifi"
     password = "6VK8eK92ePP*dHR6"
@@ -15,7 +15,7 @@ def present():
     session.verify = False
 
     response = session.post(
-        "https://localhost/api/login",
+        "https://localhost:8443/api/login",
         json={"username": username, "password": password}
     )
 
