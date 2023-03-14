@@ -19,11 +19,12 @@ def present():
         json={"username": username, "password": password}
     )
 
-    t = session.post(url,json={"name": "api-pg", "group_type":"port-group", "group_members":["8443"]})
-    
+    t = session.post(url, json={"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]})
+
     g = url + "6409081f05aee2000704684d"
     # x = session.delete(g)
-    
+
     return t.content
+
 
 print(present())
