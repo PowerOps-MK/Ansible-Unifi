@@ -26,9 +26,9 @@ jobs:
 
 | Input                  | Description                                                                                                                            |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `name` | The path of the files to replace |
-| `type` | JSON file to match file with replace String |
-| `members` | The String to search in files |
+| `name` | The name of group |
+| `type` | The type of the group |
+| `members` | The members of the group |
 
 ### Outputs
 
