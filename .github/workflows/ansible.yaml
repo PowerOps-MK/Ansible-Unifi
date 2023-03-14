@@ -82,7 +82,7 @@ jobs:
       - name: Get info
         run: |
           sleep 20
-          ls -l ~/unifi
+          ls -l ~/unifi/data
       
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
