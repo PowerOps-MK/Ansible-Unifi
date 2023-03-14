@@ -26,7 +26,7 @@ jobs:
 
 | Input                  | Description                                                                                                                            |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `path` | The path of the files to replace |
+| `name` | The path of the files to replace |
 | `json` | JSON file to match file with replace String |
 | `find` | The String to search in files |
 
@@ -34,4 +34,4 @@ jobs:
 
 | Output          | Description                                 |
 | --------------- | ------------------------------------------- |
-| `modified_count` | The number of files that have been modified |
+| `json` | The number of files that have been modified |
