@@ -57,7 +57,7 @@ jobs:
 
       # Run test Python script
       - name: Run Python script
-        run: python3.11 ./tests/test.py
+        run: python3 ./tests/test.py
 
       # Run the playbook against the hosts
       - name: Apply playbook 
