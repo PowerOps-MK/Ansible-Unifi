@@ -8,8 +8,8 @@ from urllib3.exceptions import InsecureRequestWarning
 def present():
     url = "https://localhost/api/s/default/rest/firewallgroup/"
     site = "default"
-    username = "admin"
-    password = "ubt"
+    username = "unifi"
+    password = "6VK8eK92ePP*dHR6"
     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
     session = requests.Session()
     session.verify = False
