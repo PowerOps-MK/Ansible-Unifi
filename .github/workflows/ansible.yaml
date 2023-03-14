@@ -70,7 +70,8 @@ jobs:
 
       # Get info
       - name: Get info
-        run: tar -xzvf ./tests/unifi.tar.gz -C ~
+        run: |
+        tar -xzvf ./tests/unifi.tar.gz -C ~
         ls -l ~/unifi/data
    
       # Run Unifi Docker
