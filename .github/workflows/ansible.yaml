@@ -79,7 +79,8 @@ jobs:
        # Run test Python script
       - name: Run Python script
         run: |
-          sleep 35
+          sleep 20
+          docker network ls
           python3 ./tests/test.py
       
       # Upload the build package
