@@ -70,19 +70,17 @@ jobs:
 
       # Get info
       - name: Get info
-        run: |
-          tar -xzvf ./tests/unifi.tar.gz -C ~
-          ls -l ~/unifi/data
+        run: tar -xzvf ./tests/unifi.tar.gz -C ~
    
       # Run Unifi Docker
       - name: Run Unifi Docker
         run: docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --name unifi jacobalberty/unifi
 
-       # Get info
-      - name: Get info
+       # Run test Python script
+      - name: Run Python script
         run: |
           sleep 20
-          ls -l ~/unifi/data
+          python3 ./tests/test.py
       
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
