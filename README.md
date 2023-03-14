@@ -1,4 +1,4 @@
-# Unifi - Ansible Module
+# Unifi - Ansible Collection
 A Ansible module for configuring a Ubiquiti Unifi Network
 
 ## Usage
@@ -27,11 +27,11 @@ jobs:
 | Input                  | Description                                                                                                                            |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `name` | The path of the files to replace |
-| `json` | JSON file to match file with replace String |
-| `find` | The String to search in files |
+| `type` | JSON file to match file with replace String |
+| `members` | The String to search in files |
 
 ### Outputs
 
 | Output          | Description                                 |
 | --------------- | ------------------------------------------- |
-| `json` | The number of files that have been modified |
+| `json` | The JSON output of the Ansible Module |
