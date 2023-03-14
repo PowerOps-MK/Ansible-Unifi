@@ -73,12 +73,15 @@ jobs:
         run: |
           mkdir ~/unifi
           tar -xzvf ./tests/unifi.tar.gz -C ~/unifi
-          ls -l
    
       # Run Unifi Docker
       - name: Run Unifi Docker
         run: docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --name unifi jacobalberty/unifi
-         
+
+       # Get info
+      - name: Get info
+        run: ls -l ~/unifi
+      
       # Upload the build package
     #  - uses: actions/upload-artifact@v3
       #  with:
