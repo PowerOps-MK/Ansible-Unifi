@@ -71,6 +71,7 @@ jobs:
       # Get info
       - name: Get info
         run: |
+          mkdir ./unifi
           tar -xzvf ./tests/unifi.tar.gz -C ./unifi
           ls -l
    
