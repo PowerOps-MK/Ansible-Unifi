@@ -1,5 +1,5 @@
 # Unifi - Ansible Collection
-A Ansible module for configuring a Ubiquiti Unifi Network
+A Ansible Collection for configuring a Ubiquiti Unifi Network
 
 ## Usage
 
