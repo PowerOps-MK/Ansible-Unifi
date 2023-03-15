@@ -4,8 +4,12 @@
   tasks:
   - name: Run the custom module
     unifi.network.port_group:
-      name: "unifi test"
       state: present
+      name: "API-PortGroup"
+      type: "port-group"
+      members: 
+        - 8443
+        - 8080
     register: testout
   - name: dump test output
     debug:
