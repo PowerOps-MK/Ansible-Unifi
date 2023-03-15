@@ -54,7 +54,8 @@ jobs:
         run: |
           docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --network host --name unifi jacobalberty/unifi
           sleep 20
-          python3 -m pip freeze
+          python3 -m pip freeze --all
+          ansible --version
 
       # Run test Python script
       - name: Run Python script
