@@ -39,7 +39,9 @@ jobs:
 
       # Test the sanity of collection
       - name: Test sanity 
-        run: ansible-test sanity --docker -v --color --python 3.11
+        run: |
+          python3 -m pip freeze
+          ansible-test sanity --docker -v --color --python 3.11
 
       # Install the custom collection
       - name: Install collection 
