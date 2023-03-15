@@ -87,7 +87,7 @@ def present(module):
     try:
 
         # Create result dict
-        result = dict(result=module.params["name"])
+        result = dict(result=module.params["members"])
 
         return True, result
     except BaseException:
