@@ -40,7 +40,7 @@ jobs:
       # Test the sanity of collection
       - name: Test sanity 
         run: |
-          python3 -m pip install requests
+          python3 -m pip install requests --upgrade
           ansible-test sanity --docker -v --color --python 3.11
 
       # Install the custom collection
