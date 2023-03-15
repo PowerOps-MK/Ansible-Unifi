@@ -28,12 +28,12 @@ options:
       - The name of the user to add or remove.
     required: true
     type: str
-type:
+  type:
     description:
       - The name of the user to add or remove.
     required: true
     type: str
-members:
+  members:
     description:
       - The name of the user to add or remove.
     required: true
