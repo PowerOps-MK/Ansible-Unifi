@@ -38,6 +38,7 @@ options:
       - The list of members like ["8443", "8080"]
     required: true
     type: list
+    elements: str
 
 author:
     - "Julien Thebault (@Lujeni)"
