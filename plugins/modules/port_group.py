@@ -35,7 +35,7 @@ options:
     type: str
   members:
     description:
-      - The name of the user to add or remove.
+      - The list of members like ["8443", "8080"]
     required: true
     type: list
 
@@ -76,6 +76,7 @@ message:
 # Modules
 # import requests
 from ansible.module_utils.basic import AnsibleModule
+
 # from urllib3.exceptions import InsecureRequestWarning
 
 
@@ -111,7 +112,7 @@ def main():
             state=dict(type="str", default="present", choices=["present", "absent"]),
             name=dict(type="str", required=True),
             type=dict(type="str", required=True),
-            members=dict(type="list", required=True)
+            members=dict(type="list", required=True),
         ),
         supports_check_mode=True,
     )
