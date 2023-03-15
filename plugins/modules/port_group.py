@@ -63,9 +63,12 @@ message:
     sample: 'goodbye'
 """
 
+# Modules
 from ansible.module_utils.basic import AnsibleModule
+import requests
+from urllib3.exceptions import InsecureRequestWarning
 
-
+# Functions
 # Apply config if not present
 def present(module):
     try:
