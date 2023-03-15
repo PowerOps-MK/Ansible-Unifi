@@ -82,9 +82,11 @@ from ansible.module_utils.basic import AnsibleModule
 
 # Parameters
 site = "default"
-url = "https://localhost:8443/api/s/default/rest/firewallgroup/"
+resource = "firewallgroup/"
+url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
+
 
 # Functions
 # Apply config if not present
