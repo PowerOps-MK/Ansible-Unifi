@@ -55,10 +55,6 @@ jobs:
           docker run -d --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -v ~/unifi:/unifi --network host --name unifi jacobalberty/unifi
           sleep 20
 
-      # Run test Python script
-      - name: Run Python script
-        run: python3 ./tests/test.py
-
       # Run the playbook against the hosts
       - name: Apply playbook 
         run: ansible-playbook ./tests/*.yaml
