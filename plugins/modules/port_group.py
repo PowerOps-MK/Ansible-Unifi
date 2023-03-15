@@ -74,8 +74,8 @@ message:
     sample: 'goodbye'
 """
 
-# Modules
-import os # requests
+# Modules requests
+import os 
 from ansible.module_utils.basic import AnsibleModule
 
 # from urllib3.exceptions import InsecureRequestWarning
