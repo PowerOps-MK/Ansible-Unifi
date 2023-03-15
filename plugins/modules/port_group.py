@@ -80,6 +80,11 @@ from ansible.module_utils.basic import AnsibleModule
 
 # from urllib3.exceptions import InsecureRequestWarning
 
+# Parameters
+site = "default"
+url = "https://localhost:8443/api/s/default/rest/firewallgroup/"
+username = "unifi"
+password = "6VK8eK92ePP*dHR6"
 
 # Functions
 # Apply config if not present
