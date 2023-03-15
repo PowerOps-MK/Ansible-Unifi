@@ -69,6 +69,8 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Define dependency's between jobs
+    needs: test
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
