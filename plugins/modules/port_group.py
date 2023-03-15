@@ -113,7 +113,7 @@ def main():
             state=dict(type="str", default="present", choices=["present", "absent"]),
             name=dict(type="str", required=True),
             type=dict(type="str", required=True),
-            members=dict(type="list", required=True),
+            members=dict(type="list", elements="str", required=True),
         ),
         supports_check_mode=True,
     )
