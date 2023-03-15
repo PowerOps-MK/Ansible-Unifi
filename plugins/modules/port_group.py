@@ -75,7 +75,7 @@ message:
 """
 
 # Modules requests
-import os 
+import os
 from ansible.module_utils.basic import AnsibleModule
 
 # from urllib3.exceptions import InsecureRequestWarning
