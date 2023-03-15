@@ -28,6 +28,16 @@ options:
       - The name of the user to add or remove.
     required: true
     type: str
+type:
+    description:
+      - The name of the user to add or remove.
+    required: true
+    type: str
+members:
+    description:
+      - The name of the user to add or remove.
+    required: true
+    type: list
 
 author:
     - "Julien Thebault (@Lujeni)"
@@ -64,7 +74,7 @@ message:
 """
 
 # Modules
-# import requests
+import requests
 from ansible.module_utils.basic import AnsibleModule
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -98,8 +108,10 @@ def main():
     # AnsibleModule object with parameters for abstraction
     module = AnsibleModule(
         argument_spec=dict(
-            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
+            name=dict(type="str", required=True),
+            type=dict(type="str", required=True),
+            members=dict(type="list", required=True)
         ),
         supports_check_mode=True,
     )
