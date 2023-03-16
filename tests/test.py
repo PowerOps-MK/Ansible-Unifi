@@ -9,5 +9,7 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
 
-response = open_url(url=login_url, method="POST", validate_certs=False, force_basic_auth=True, url_username=username, url_password=password)
+response = open_url(url=api_url, method="POST", validate_certs=False)
 print(response)
+
+# force_basic_auth=True, url_username=username, url_password=password
