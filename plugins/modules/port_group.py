@@ -90,16 +90,13 @@ password = "6VK8eK92ePP*dHR6"
 # Functions
 # Apply config if not present
 def present(module):
-    try:
-        response = open_url(url=login_url, method="POST", validate_certs=False, url_username=username, url_password=password)
+     response = open_url(url=login_url, method="POST", validate_certs=False, url_username=username, url_password=password)
 
-        # Create result dict
-        result = dict(result="success")
+     # Create result dict
+     result = dict(result="success")
         
-        return True, result
-    except BaseException:
-        module.fail_json(msg="failed")
-
+     return True, result
+    
 
 # Remove config if not present
 def absent(module):
