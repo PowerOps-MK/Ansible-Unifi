@@ -94,7 +94,7 @@ def present(module):
         # Create result dict
         result = dict(result=module.params["members"])
         
-        response = open_url(api_url, method="POST", validate_certs=False, force_basic_auth=True, url_username=username, url_password=password)
+        response = open_url(url="https://localhost:8443/status", method="GET", validate_certs=False)
         
         return True, result
     except BaseException:
