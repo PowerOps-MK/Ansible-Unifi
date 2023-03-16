@@ -94,7 +94,7 @@ def present(module):
         response = open_url(url="https://localhost:8443/status", method="GET", validate_certs=False)
 
         # Create result dict
-        result = dict(result=response)
+        result = dict(result=response.content)
         
         return True, result
     except BaseException:
