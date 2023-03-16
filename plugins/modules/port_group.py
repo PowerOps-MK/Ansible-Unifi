@@ -90,7 +90,7 @@ password = "6VK8eK92ePP*dHR6"
 # Functions
 # Apply config if not present
 def present(module):
-     response = open_url(url=login_url, method="POST", validate_certs=False, url_username=username, url_password=password)
+     response = open_url(url=login_url, method="POST", validate_certs=False, force_basic_auth=True, url_username=username, url_password=password)
 
      # Create result dict
      result = dict(result="success")
