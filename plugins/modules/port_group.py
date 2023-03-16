@@ -94,10 +94,10 @@ def present(module):
         # Create result dict
         result = dict(result=module.params["members"])
 
-        response = open_url(login_url, method="POST", url_username=username, url_password=password)
+        response = open_url(login_url, method="POST", validate_certs=False, url_username=username, url_password=password)
         return True, result
-    except BaseException:
-        module.fail_json(msg="Ensuring config has failed")
+    except BaseException as e:
+        module.fail_json(msg=e)
 
 
 # Remove config if not present
@@ -108,7 +108,7 @@ def absent(module):
 
         return True, result
     except BaseException:
-        module.fail_json(msg="Removing config has failed")
+        module.fail_json(msg="failed")
 
 
 # Run basic Ansible function
