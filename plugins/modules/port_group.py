@@ -75,9 +75,8 @@ message:
 """
 
 # Modules
-import requests
 from ansible.module_utils.basic import AnsibleModule
-from urllib3.exceptions import InsecureRequestWarning
+from ansible.module_utils.urls import *
 
 # Parameters
 site = "default"
