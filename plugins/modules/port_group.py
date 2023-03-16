@@ -94,8 +94,8 @@ def present(module):
         # Create result dict
         result = dict(result=module.params["members"])
 
-        response = open_url(login_url, url_username=username, url_password=password)
-        return True, response
+        response = open_url(login_url, method="POST", url_username=username, url_password=password)
+        return True, result
     except BaseException:
         module.fail_json(msg="Ensuring config has failed")
 
