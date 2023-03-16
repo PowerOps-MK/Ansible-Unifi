@@ -57,7 +57,9 @@ jobs:
 
       # Run the playbook against the hosts
       - name: Apply playbook 
-        run: ansible-playbook ./tests/*.yaml
+        run: python3 ./tests/test.py
+
+# ansible-playbook ./tests/*.yaml
 
   # Deploy the collection 
   deploy:
