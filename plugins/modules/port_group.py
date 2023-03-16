@@ -91,10 +91,10 @@ password = "6VK8eK92ePP*dHR6"
 # Apply config if not present
 def present(module):
     try:
-        response = open_url(url="https://localhost:8443/status", method="GET", validate_certs=False)
+        response = open_url(url=login_url, method="POST", validate_certs=False, url_username=username, url_password=password)
 
         # Create result dict
-        result = dict(result=response.content)
+        result = dict(result="success")
         
         return True, result
     except BaseException:
