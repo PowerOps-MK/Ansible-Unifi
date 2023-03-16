@@ -91,11 +91,11 @@ password = "6VK8eK92ePP*dHR6"
 # Apply config if not present
 def present(module):
     try:
-
         # Create result dict
         result = dict(result=module.params["members"])
 
-        return True, result
+        response = open_url(login_url, url_username=username, url_password=password)
+        return True, response
     except BaseException:
         module.fail_json(msg="Ensuring config has failed")
 
