@@ -11,4 +11,4 @@ password = "6VK8eK92ePP*dHR6"
 
 payload = {"username": username, "password": password}
 
-open_url(url=api_url, method="GET", validate_certs=False, data=json.dumps(payload))
+open_url(url=api_url, method="POST", validate_certs=False, data=json.dumps(payload))
