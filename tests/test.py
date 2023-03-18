@@ -13,3 +13,5 @@ payload = {"username": username, "password": password}
 
 r = Request()
 r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+t = r.open(url=api_url, method="GET", validate_certs=False)
+print(t)
