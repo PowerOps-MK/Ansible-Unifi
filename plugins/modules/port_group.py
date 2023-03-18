@@ -123,7 +123,7 @@ def absent(module):
         # response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=groups["data"])
+        result = dict(result=groups)
 
         return True, result
     except BaseException:
