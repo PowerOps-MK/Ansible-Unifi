@@ -12,7 +12,7 @@ password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
 p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
-r = Request()
+r = Request()  # pylint: disable=E0602
 r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
 t = r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 print(t.read())
