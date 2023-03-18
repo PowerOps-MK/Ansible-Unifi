@@ -99,10 +99,9 @@ def present(module):
 
     # Post data to the API
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
-    response = session.post(
-        url=api_url, validate_certs=False, data=json.dumps(p)
-    )
+    session.post(url=api_url, validate_certs=False, data=json.dumps(p))
 
+    response = session.get(url=api_url, validate_certs=False)
     # Create result dict
     result = dict(result=response.read())
 
