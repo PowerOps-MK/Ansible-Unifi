@@ -117,7 +117,7 @@ def absent(module):
         session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
         groups = session.get(url=api_url, validate_certs=False).read()
-        print(groups["data"])
+        module.log(groups["data"])
 
         # Post data to the API
         delete_url = f"{api_url}/641636e081322500152ecbbc"
