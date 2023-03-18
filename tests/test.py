@@ -8,4 +8,4 @@ api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
-open_url(url=login_url, method="POST", validate_certs=False, data={"username": username, "password": password})
+open_url(url=login_url, method="POST", validate_certs=False, headers={"username": username, "password": password})
