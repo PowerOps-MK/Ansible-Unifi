@@ -76,7 +76,7 @@ message:
 
 # Modules
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import Request
+from ansible.module_utils.urls import *
 import json
 
 # Parameters
@@ -94,9 +94,9 @@ def present(module):
      payload = {"username": username, "password": password}
      p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
-     session = Request()
-     session.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
-     session.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
+     r = Request()
+     r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+     r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
      # Create result dict
      result = dict(result="success")
