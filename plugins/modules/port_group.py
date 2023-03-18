@@ -95,8 +95,8 @@ def present(module):
     # Authenticate to the REST API
     payload = {"username": username, "password": password}
     session = Request()  # pylint: disable=E0602
-    session.open(
-        url=login_url, method="POST", validate_certs=False, data=json.dumps(payload)
+    session.post(
+        url=login_url, validate_certs=False, data=json.dumps(payload)
     )
 
     # Post data to the API
