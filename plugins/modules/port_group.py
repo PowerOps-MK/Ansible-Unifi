@@ -95,11 +95,11 @@ def present(module):
      p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
      session = Request()
-     session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
-     t = session.post(url=api_url, validate_certs=False, data=json.dumps(p))
+     session.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+     session.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
      # Create result dict
-     result = dict(result=t.read())
+     result = dict(result="success")
         
      return True, result
     
