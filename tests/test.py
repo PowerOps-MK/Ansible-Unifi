@@ -12,4 +12,4 @@ password = "6VK8eK92ePP*dHR6"
 # print(response.read())
 
 r = Request()
-r.post(login_url, json={"username": username, "password": password})
+r.post(login_url, data={"username": username, "password": password})
