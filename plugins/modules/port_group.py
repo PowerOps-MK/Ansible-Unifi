@@ -76,7 +76,8 @@ message:
 
 # Modules
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import *
+from ansible.module_utils.urls import Request
+import json
 
 # Parameters
 site = "default"
@@ -90,10 +91,14 @@ password = "6VK8eK92ePP*dHR6"
 # Functions
 # Apply config if not present
 def present(module):
-     response = open_url(url=login_url, method="POST", validate_certs=False, force_basic_auth=True, url_username=username, url_password=password)
+     payload = {"username": username, "password": password}
+     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
+
+     session = Request()
+     t = session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
      # Create result dict
-     result = dict(result="success")
+     result = dict(result=t.read())
         
      return True, result
     
