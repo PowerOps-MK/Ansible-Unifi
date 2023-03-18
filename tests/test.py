@@ -1,6 +1,6 @@
+import json
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import urllib_request
-import json
 
 site = "default"
 resource = "firewallgroup/"
