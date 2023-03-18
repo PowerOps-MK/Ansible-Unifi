@@ -95,7 +95,7 @@ def present(module):
     payload = {"username": username, "password": password}
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
-    session = Request() # pylint: disable=E0602
+    session = Request()  # pylint: disable=E0602
     t = session.open(
         url=login_url, method="POST", validate_certs=False, data=json.dumps(payload)
     )
