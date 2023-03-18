@@ -96,11 +96,11 @@ def present(module):
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
     r = Request()
-    r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
-    r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
+    t = r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+    # r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
     # Create result dict
-    result = dict(result="success")
+    result = dict(result=t.read())
 
     return True, result
 
