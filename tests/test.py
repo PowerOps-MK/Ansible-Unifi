@@ -12,4 +12,4 @@ password = "6VK8eK92ePP*dHR6"
 # print(response.read())
 
 r = Request()
-r.post(login_url, validate_certs=False, data={"username": username, "password": password})
+r.post(login_url, validate_certs=False, force_basic_auth=True, url_username=username, url_password=password)
