@@ -117,14 +117,13 @@ def absent(module):
         session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
         groups = session.get(url=api_url, validate_certs=False).read()
-        module.log(groups["data"])
 
         # Post data to the API
-        delete_url = f"{api_url}/641636e081322500152ecbbc"
-        response = session.delete(url=delete_url, validate_certs=False)
+        # delete_url = f"{api_url}/641636e081322500152ecbbc"
+        # response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=response.read())
+        result = dict(result=groups["data"])
 
         return True, result
     except BaseException:
