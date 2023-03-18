@@ -95,8 +95,10 @@ def present(module):
     payload = {"username": username, "password": password}
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
-    r = Request()
-    t = r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+    session = Request()
+    t = session.open(
+        url=login_url, method="POST", validate_certs=False, data=json.dumps(payload)
+    )
     # r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
     # Create result dict
