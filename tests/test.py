@@ -9,9 +9,10 @@ api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
-payload = {"username": username, "password": password, "name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
+payload = {"username": username, "password": password}
+p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
 r = Request()
 r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
-t = r.open(url=api_url, method="POST", validate_certs=False)
+t = r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 print(t.read())
