@@ -76,6 +76,7 @@ message:
 
 # Modules
 import json
+
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import *
 
@@ -96,13 +97,13 @@ def present(module):
 
     r = Request()
     r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
-    # r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
+    r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
     # Create result dict
     result = dict(result="success")
-        
+
     return True, result
-    
+
 
 # Remove config if not present
 def absent(module):
