@@ -1,5 +1,6 @@
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import *
+import json
 
 site = "default"
 resource = "firewallgroup/"
@@ -8,4 +9,6 @@ api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
-open_url(url=login_url, method="POST", validate_certs=False, headers={"username": username, "password": password})
+payload = {"username": username, "password": password}
+
+open_url(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
