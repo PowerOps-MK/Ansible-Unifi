@@ -91,17 +91,17 @@ password = "6VK8eK92ePP*dHR6"
 # Functions
 # Apply config if not present
 def present(module):
-     payload = {"username": username, "password": password}
-     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
+    payload = {"username": username, "password": password}
+    p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
-     r = Request()
-     r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
-     r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
+    r = Request()
+    r.open(url=login_url, method="POST", validate_certs=False, data=json.dumps(payload))
+    # r.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
-     # Create result dict
-     result = dict(result="success")
+    # Create result dict
+    result = dict(result="success")
         
-     return True, result
+    return True, result
     
 
 # Remove config if not present
