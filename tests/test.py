@@ -1,6 +1,5 @@
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import *
-from urllib.request import * 
 
 site = "default"
 resource = "firewallgroup/"
