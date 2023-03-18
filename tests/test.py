@@ -12,4 +12,4 @@ password = "6VK8eK92ePP*dHR6"
 # print(response.read())
 
 r = Request()
-r.open('GET', 'http://httpbin.org/cookies/set?k1=v1').read()
+r.post(login_url, json={"username": username, "password": password})
