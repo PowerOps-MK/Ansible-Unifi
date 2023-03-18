@@ -95,9 +95,7 @@ def present(module):
     # Authenticate to the REST API
     payload = {"username": username, "password": password}
     session = Request()  # pylint: disable=E0602
-    session.post(
-        url=login_url, validate_certs=False, data=json.dumps(payload)
-    )
+    session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
     # Post data to the API
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
@@ -114,11 +112,14 @@ def present(module):
 # Remove config if not present
 def absent(module):
     try:
+        # Authenticate to the REST API
+        payload = {"username": username, "password": password}
+        session = Request()  # pylint: disable=E0602
+        session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
+
         # Post data to the API
         delete_url = f"{api_url}/641636e081322500152ecbbc"
-        response = session.delete(
-            url=delete_url, validate_certs=False
-        )
+        response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
         result = dict(result=response.read())
