@@ -101,8 +101,8 @@ def present(module):
 
     # Post data to the API
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
-    response = session.open(
-        url=api_url, method="POST", validate_certs=False, data=json.dumps(p)
+    response = session.post(
+        url=api_url, validate_certs=False, data=json.dumps(p)
     )
 
     # Create result dict
@@ -114,8 +114,14 @@ def present(module):
 # Remove config if not present
 def absent(module):
     try:
+        # Post data to the API
+        delete_url = f"{api_url}/641636e081322500152ecbbc"
+        response = session.delete(
+            url=delete_url, validate_certs=False
+        )
+
         # Create result dict
-        result = dict(result=module.params["state"])
+        result = dict(result=response.read())
 
         return True, result
     except BaseException:
