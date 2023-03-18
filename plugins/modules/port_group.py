@@ -96,13 +96,13 @@ def present(module):
     p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
 
     session = Request()  # pylint: disable=E0602
-    t = session.open(
+    session.open(
         url=login_url, method="POST", validate_certs=False, data=json.dumps(payload)
     )
-    session.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
+    response = session.open(url=api_url, method="POST", validate_certs=False, data=json.dumps(p))
 
     # Create result dict
-    result = dict(result=t.read())
+    result = dict(result=response.read())
 
     return True, result
 
