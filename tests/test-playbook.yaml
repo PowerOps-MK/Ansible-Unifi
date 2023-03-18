@@ -4,7 +4,7 @@
   tasks:
   - name: Run the custom module
     unifi.network.port_group:
-      state: present
+      state: absent
       name: "API-PortGroup"
       type: "port-group"
       members: 
