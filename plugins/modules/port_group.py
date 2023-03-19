@@ -133,8 +133,8 @@ def absent(module):
                 changed = True
 
         # Create result dict
-        # result = dict(result=resources_dict)
-        result = response.read()
+        result = dict(result=response.read())
+        # result = response.read()
 
         return changed, result
     except BaseException as e:
