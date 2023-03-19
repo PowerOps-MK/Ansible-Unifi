@@ -132,8 +132,11 @@ def absent(module):
                 response = session.delete(url=delete_url, validate_certs=False)
                 changed = True
 
+        resources = session.get(url=api_url, validate_certs=False)
+        resources_dict = json.loads(resources.read())["data"]
+
         # Create result dict
-        result = dict(result=response.read())
+        result = dict(result=resources_dict)
 
         return changed, result
     except BaseException as e:
