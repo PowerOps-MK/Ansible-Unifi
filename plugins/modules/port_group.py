@@ -127,7 +127,7 @@ def present(module):
 
         return changed, result
     except BaseException:
-        module.fail_json(msg="Creating resource has failed")
+        module.fail_json(msg="Creating of resource failed")
 
 
 # Remove config if not present
@@ -144,15 +144,15 @@ def absent(module):
         resources_dict = json.loads(resources.read())["data"]
 
         for resource in resources_dict:
-            if resource["name"] == "shhs":  # module.params["name"]:
+            if resource["name"] == module.params["name"]:
                 delete_url = f"{api_url}/{resource['_id']}"
                 response = session.delete(url=delete_url, validate_certs=False)
                 changed = True
                 result = response.read()
 
         return changed, result
-    except BaseException as e:
-        module.fail_json(msg=e)
+    except BaseException:
+        module.fail_json(msg="Deleting of resource failed")
 
 
 # Run basic Ansible function
