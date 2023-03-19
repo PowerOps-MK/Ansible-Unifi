@@ -124,7 +124,7 @@ def absent(module):
         # response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=x["data"]["_id"])
+        result = dict(result=x["data"].group_members)
 
         return True, result
     except BaseException:
