@@ -98,7 +98,7 @@ def present(module):
     session.post(url=login_url, validate_certs=False, data=json.dumps(login_payload))
 
     # Post data to the API
-    payload = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
+    payload = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443", "8080"]}
     session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
     response = session.get(url=api_url, validate_certs=False)
@@ -117,7 +117,7 @@ def absent(module):
         session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
         groups = session.get(url=api_url, validate_certs=False).read()
-        x = json.loads(groups)["data"][0]
+        x = json.loads(groups)["data"][0]["_id"]
 
         # Post data to the API
         # delete_url = f"{api_url}/641636e081322500152ecbbc"
