@@ -98,7 +98,7 @@ def present(module):
     session.post(url=login_url, validate_certs=False, data=json.dumps(login_payload))
 
     # Post data to the API
-    payload = {"name": module.params["name"], "group_type": module.params["members"], "group_members": ["8443", "8080"]}
+    payload = {"name": module.params["name"], "group_type": module.params["type"], "group_members": module.params["members"]}
     session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
     response = session.get(url=api_url, validate_certs=False)
