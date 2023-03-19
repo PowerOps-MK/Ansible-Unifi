@@ -93,13 +93,13 @@ password = "6VK8eK92ePP*dHR6"
 # Apply config if not present
 def present(module):
     # Authenticate to the REST API
-    payload = {"username": username, "password": password}
+    login_payload = {"username": username, "password": password}
     session = Request()  # pylint: disable=E0602
-    session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
+    session.post(url=login_url, validate_certs=False, data=json.dumps(login_payload))
 
     # Post data to the API
-    p = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
-    session.post(url=api_url, validate_certs=False, data=json.dumps(p))
+    payload = {"name": "api-pg", "group_type": "port-group", "group_members": ["8443"]}
+    session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
     response = session.get(url=api_url, validate_certs=False)
     # Create result dict
