@@ -147,9 +147,7 @@ def main():
             members=dict(type="list", elements="str", required=False),
         ),
         supports_check_mode=True,
-        required_if=(
-            ("state", "present", ["type", "members"]),
-        ),
+        required_if=(("state", "present", ["type", "members"]),)
     )
 
     choice_map = {"present": present, "absent": absent}
