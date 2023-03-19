@@ -90,12 +90,22 @@ password = "6VK8eK92ePP*dHR6"
 
 
 # Functions
+# Authenticate to the REST API
+def authenticate():
+    payload = {"username": username, "password": password}
+
+    session = Request()  # pylint: disable=E0602
+    session.post(
+        url=login_url, validate_certs=False, data=json.dumps(payload)
+    )
+
+    return session
+
+
 # Apply config if not present
 def present(module):
     # Authenticate to the REST API
-    login_payload = {"username": username, "password": password}
-    session = Request()  # pylint: disable=E0602
-    session.post(url=login_url, validate_certs=False, data=json.dumps(login_payload))
+    session = authenticate()
 
     # Post data to the API
     payload = {
@@ -115,13 +125,10 @@ def present(module):
 def absent(module):
     try:
         changed = False
+        result = ""
 
         # Authenticate to the REST API
-        login_payload = {"username": username, "password": password}
-        session = Request()  # pylint: disable=E0602
-        session.post(
-            url=login_url, validate_certs=False, data=json.dumps(login_payload)
-        )
+        session = authenticate()
 
         resources = session.get(url=api_url, validate_certs=False)
         resources_dict = json.loads(resources.read())["data"]
@@ -131,10 +138,7 @@ def absent(module):
                 delete_url = f"{api_url}/{resource['_id']}"
                 response = session.delete(url=delete_url, validate_certs=False)
                 changed = True
-
-        # Create result dict
-        result = dict(result=response.read())
-        # result = response.read()
+                result = response.read()
 
         return changed, result
     except BaseException as e:
