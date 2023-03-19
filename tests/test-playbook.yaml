@@ -10,7 +10,7 @@
       members: 
         - 8443
         - 8080
-- name: Run the custom module present 2
+  - name: Run the custom module present 2
     unifi.network.port_group:
       state: present
       name: "Test-PortGroup"
