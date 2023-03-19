@@ -114,6 +114,8 @@ def present(module):
 # Remove config if not present
 def absent(module):
     try:
+        changed = False
+
         # Authenticate to the REST API
         login_payload = {"username": username, "password": password}
         session = Request()  # pylint: disable=E0602
@@ -122,21 +124,18 @@ def absent(module):
         )
 
         resources = session.get(url=api_url, validate_certs=False)
-        resource_id = json.loads(resources.read())["data"]
+        resources_dict = json.loads(resources.read())["data"]
 
-        for resource in resource_id:
-            t = resource["_id"]
-            # Post data to the API
-            delete_url = f"{api_url}/{t}"
-            response = session.delete(url=delete_url, validate_certs=False)
-
-        resources = session.get(url=api_url, validate_certs=False)
-        resource_id = json.loads(resources.read())["data"]
+        for resource in resources_dict:
+            if resource["name"] == module.params["name"]:
+                delete_url = f"{api_url}/{resource["_id"]}"
+                response = session.delete(url=delete_url, validate_certs=False)
+                changed = True
 
         # Create result dict
-        result = dict(result=resource_id)
+        result = dict(result=response.read())
 
-        return True, result
+        return changed, result
     except BaseException as e:
         module.fail_json(msg=e)
 
