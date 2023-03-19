@@ -124,6 +124,9 @@ def absent(module):
         resources = session.get(url=api_url, validate_certs=False)
         resource_id = json.loads(resources.read())["data"]  # [0]["_id"]
 
+        for resource in resources.items():
+            t = resource["_id"]
+
         # Post data to the API
         # delete_url = f"{api_url}/{resource_id}"
         # response = session.delete(url=delete_url, validate_certs=False)
