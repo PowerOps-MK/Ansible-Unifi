@@ -116,14 +116,14 @@ def absent(module):
         session = Request()  # pylint: disable=E0602
         session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
-        groups = session.get(url=api_url, validate_certs=False).json()
+        groups = session.get(url=api_url, validate_certs=False).read()
 
         # Post data to the API
         # delete_url = f"{api_url}/641636e081322500152ecbbc"
         # response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=groups)
+        result = dict(result=json.loads(groups))
 
         return True, result
     except BaseException:
