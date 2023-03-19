@@ -31,12 +31,12 @@ options:
   type:
     description:
       - The name of the user to add or remove.
-    required: true
+    required: false
     type: str
   members:
     description:
       - The list of members like ["8443", "8080"]
-    required: true
+    required: false
     type: list
     elements: str
 
@@ -143,8 +143,8 @@ def main():
         argument_spec=dict(
             state=dict(type="str", default="present", choices=["present", "absent"]),
             name=dict(type="str", required=True),
-            type=dict(type="str", required=True),
-            members=dict(type="list", elements="str", required=True),
+            type=dict(type="str", required=False),
+            members=dict(type="list", elements="str", required=False),
         ),
         supports_check_mode=True,
     )
