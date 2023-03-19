@@ -112,16 +112,16 @@ def present(module):
 def absent(module):
     try:
         # Authenticate to the REST API
-        payload = {"username": username, "password": password}
+        login_payload = {"username": username, "password": password}
         session = Request()  # pylint: disable=E0602
-        session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
+        session.post(url=login_url, validate_certs=False, data=json.dumps(login_payload))
 
         groups = session.get(url=api_url, validate_certs=False).read()
         x = json.loads(groups)["data"][0]["_id"]
 
         # Post data to the API
-        # delete_url = f"{api_url}/641636e081322500152ecbbc"
-        # response = session.delete(url=delete_url, validate_certs=False)
+        delete_url = f"{api_url}/{x}"
+        response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
         result = dict(result=x)
