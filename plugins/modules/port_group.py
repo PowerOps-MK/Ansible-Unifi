@@ -126,10 +126,10 @@ def absent(module):
 
         # Post data to the API
         delete_url = f"{api_url}/{x}"
-        response = session.delete(url=delete_url, validate_certs=False)
+        # response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=response.read())
+        result = dict(result=delete_url)
 
         return True, result
     except BaseException as e:
