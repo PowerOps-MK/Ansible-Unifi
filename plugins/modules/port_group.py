@@ -101,7 +101,7 @@ def present(module):
     payload = {
         "name": module.params["name"],
         "group_type": module.params["type"],
-        "group_members": module.params["members"]
+        "group_members": module.params["members"],
     }
     session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
