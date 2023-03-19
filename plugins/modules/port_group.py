@@ -91,15 +91,19 @@ password = "6VK8eK92ePP*dHR6"
 
 # Functions
 # Authenticate to the REST API
-def authenticate():
-    payload = {"username": username, "password": password}
+def authenticate(module):
+    try:
+        payload = {"username": username, "password": password}
 
-    session = Request()  # pylint: disable=E0602
-    session.post(
-        url=login_url, validate_certs=False, data=json.dumps(payload)
-    )
+        session = Request()  # pylint: disable=E0602
+        session.post(
+           url=login_url, validate_certs=False, data=json.dumps(payload)
+        )
 
-    return session
+        return session
+    except BaseException:
+        module.fail_json(msg="Authenication to API had failed")
+
 
 
 # Apply config if not present
@@ -109,7 +113,7 @@ def present(module):
         result = ""
 
         # Authenticate to the REST API
-        session = authenticate()
+        session = authenticate(module)
 
         # Post data to the API
         payload = {
@@ -133,7 +137,7 @@ def absent(module):
         result = ""
 
         # Authenticate to the REST API
-        session = authenticate()
+        session = authenticate(module)
 
         resources = session.get(url=api_url, validate_certs=False)
         resources_dict = json.loads(resources.read())["data"]
