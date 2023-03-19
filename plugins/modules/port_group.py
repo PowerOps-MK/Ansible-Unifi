@@ -122,14 +122,13 @@ def absent(module):
         )
 
         resources = session.get(url=api_url, validate_certs=False)
-        resource_id = json.loads(resources.read())["data"]  # [0]["_id"]
+        resource_id = json.loads(resources.read())["data"]
 
         for resource in resource_id:
             t = resource["_id"]
-
-        # Post data to the API
-        # delete_url = f"{api_url}/{resource_id}"
-        # response = session.delete(url=delete_url, validate_certs=False)
+            # Post data to the API
+            delete_url = f"{api_url}/{t}"
+            response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
         result = dict(result=resource_id)
