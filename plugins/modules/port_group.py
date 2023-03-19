@@ -144,7 +144,7 @@ def absent(module):
         resources_dict = json.loads(resources.read())["data"]
 
         for resource in resources_dict:
-            if resource["name"] == module.params["name"]:
+            if resource["name"] == "shhs"  # module.params["name"]:
                 delete_url = f"{api_url}/{resource['_id']}"
                 response = session.delete(url=delete_url, validate_certs=False)
                 changed = True
