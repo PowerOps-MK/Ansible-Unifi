@@ -148,7 +148,6 @@ def main():
         ),
         supports_check_mode=True,
         required_if=(("state", "present", ["type", "members"]),),
-        )
     )
 
     choice_map = {"present": present, "absent": absent}
