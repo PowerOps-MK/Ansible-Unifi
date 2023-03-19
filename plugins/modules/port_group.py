@@ -116,7 +116,7 @@ def absent(module):
         session = Request()  # pylint: disable=E0602
         session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
-        groups = session.get(url=api_url, validate_certs=False).read()
+        groups = session.get(url=api_url, validate_certs=False)  # .read()
         x = json.loads(groups)
 
         # Post data to the API
