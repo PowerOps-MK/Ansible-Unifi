@@ -118,6 +118,10 @@ def present(module):
         # Authenticate to the REST API
         session = authenticate(module)
 
+        # Get existing resources
+        resources = session.get(url=api_url, validate_certs=False)
+        resources_dict = json.loads(resources.read())["data"]
+
         # Post data to the API
         response = session.post(
             url=api_url, validate_certs=False, data=json.dumps(payload)
@@ -140,9 +144,11 @@ def absent(module):
         # Authenticate to the REST API
         session = authenticate(module)
 
+        # Get existing resources
         resources = session.get(url=api_url, validate_certs=False)
         resources_dict = json.loads(resources.read())["data"]
 
+        # Delete resource if exist
         for resource in resources_dict:
             if resource["name"] == module.params["name"]:
                 delete_url = f"{api_url}/{resource['_id']}"
