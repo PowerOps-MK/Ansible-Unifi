@@ -125,11 +125,11 @@ def absent(module):
         x = json.loads(groups)["data"][0]["_id"]
 
         # Post data to the API
-        # delete_url = f"{api_url}/{x}"
-        # response = session.delete(url=delete_url, validate_certs=False)
+        delete_url = f"{api_url}/{x}"
+        response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=x)
+        result = dict(result=response.read())
 
         return True, result
     except BaseException:
