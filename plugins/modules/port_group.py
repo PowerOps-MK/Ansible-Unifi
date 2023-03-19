@@ -130,6 +130,9 @@ def absent(module):
             delete_url = f"{api_url}/{t}"
             response = session.delete(url=delete_url, validate_certs=False)
 
+        resources = session.get(url=api_url, validate_certs=False)
+        resource_id = json.loads(resources.read())["data"]
+
         # Create result dict
         result = dict(result=resource_id)
 
