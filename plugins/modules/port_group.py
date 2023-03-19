@@ -92,17 +92,14 @@ password = "6VK8eK92ePP*dHR6"
 # Functions
 # Authenticate to the REST API
 def authenticate():
-    try:
-        payload = {"username": username, "password": password}
+    payload = {"username": username, "password": password}
 
-        session = Request()  # pylint: disable=E0602
-        session.post(
-            url=login_url, validate_certs=False, data=json.dumps(payload)
-        )
+    session = Request()  # pylint: disable=E0602
+    session.post(
+        url=login_url, validate_certs=False, data=json.dumps(payload)
+    )
 
-        return session
-    except BaseException:
-        module.fail_json(msg="Authentication failed")
+    return session
 
 
 # Apply config if not present
