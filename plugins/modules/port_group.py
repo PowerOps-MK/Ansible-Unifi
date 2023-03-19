@@ -132,8 +132,8 @@ def absent(module):
         result = dict(result=response.read())
 
         return True, result
-    except BaseException:
-        module.fail_json(msg="failed")
+    except BaseException as e:
+        module.fail_json(msg=e)
 
 
 # Run basic Ansible function
