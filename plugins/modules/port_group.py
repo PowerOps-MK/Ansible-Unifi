@@ -105,13 +105,6 @@ def present(module):
     }
     response = session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
-    payload = {
-        "name": module.params["name"],
-        "group_type": module.params["type"],
-        "group_members": ["7888"],
-    }
-    session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
-
     # Create result dict
     result = dict(result=response.read())
 
@@ -128,8 +121,8 @@ def absent(module):
             url=login_url, validate_certs=False, data=json.dumps(login_payload)
         )
 
-        groups = session.get(url=api_url, validate_certs=False)
-        group_id = json.loads(groups.read())["data"][0]["_id"]
+        resources = session.get(url=api_url, validate_certs=False)
+        resource_id = json.loads(resources.read())["data"][0]["_id"]
 
         # Post data to the API
         delete_url = f"{api_url}/{group_id}"
