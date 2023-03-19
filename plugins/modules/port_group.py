@@ -82,7 +82,7 @@ from ansible.module_utils.urls import Request
 
 # Parameters
 site = "default"
-resource = "firewallgroup/"
+resource = "firewallgroup"
 login_url = "https://localhost:8443/api/login"
 api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
@@ -126,7 +126,7 @@ def absent(module):
 
         # Post data to the API
         delete_url = f"{api_url}/{x}"
-        # response = session.delete(url=delete_url, validate_certs=False)
+        response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
         result = dict(result=delete_url)
