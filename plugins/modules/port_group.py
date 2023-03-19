@@ -103,9 +103,8 @@ def present(module):
         "group_type": module.params["type"],
         "group_members": module.params["members"],
     }
-    session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
+    response = session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
 
-    response = session.get(url=api_url, validate_certs=False)
     # Create result dict
     result = dict(result=response.read())
 
