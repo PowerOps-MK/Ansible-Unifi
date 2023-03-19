@@ -96,9 +96,7 @@ def authenticate(module):
         payload = {"username": username, "password": password}
 
         session = Request()  # pylint: disable=E0602
-        session.post(
-            url=login_url, validate_certs=False, data=json.dumps(payload)
-        )
+        session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
         return session
     except BaseException:
@@ -108,19 +106,22 @@ def authenticate(module):
 # Apply config if not present
 def present(module):
     try:
+        # Initialize variables
         changed = False
         result = ""
-
-        # Authenticate to the REST API
-        session = authenticate(module)
-
-        # Post data to the API
         payload = {
             "name": module.params["name"],
             "group_type": module.params["type"],
             "group_members": module.params["members"],
         }
-        response = session.post(url=api_url, validate_certs=False, data=json.dumps(payload))
+
+        # Authenticate to the REST API
+        session = authenticate(module)
+
+        # Post data to the API
+        response = session.post(
+            url=api_url, validate_certs=False, data=json.dumps(payload)
+        )
         changed = True
         result = response.read()
 
@@ -132,6 +133,7 @@ def present(module):
 # Remove config if not present
 def absent(module):
     try:
+        # Initialize variables
         changed = False
         result = ""
 
