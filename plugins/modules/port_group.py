@@ -121,15 +121,15 @@ def absent(module):
             url=login_url, validate_certs=False, data=json.dumps(login_payload)
         )
 
-        groups = session.get(url=api_url, validate_certs=False).read()
-        x = json.loads(groups)["data"][0]["_id"]
+        groups = session.get(url=api_url, validate_certs=False)
+        group_id = json.loads(groups.read())["data"][0]["_id"]
 
         # Post data to the API
-        delete_url = f"{api_url}/{x}"
+        delete_url = f"{api_url}/{group_id}"
         response = session.delete(url=delete_url, validate_certs=False)
 
         # Create result dict
-        result = dict(result=delete_url)
+        result = dict(result=response.read())
 
         return True, result
     except BaseException as e:
