@@ -97,13 +97,12 @@ def authenticate(module):
 
         session = Request()  # pylint: disable=E0602
         session.post(
-           url=login_url, validate_certs=False, data=json.dumps(payload)
+            url=login_url, validate_certs=False, data=json.dumps(payload)
         )
 
         return session
     except BaseException:
         module.fail_json(msg="Authenication to API had failed")
-
 
 
 # Apply config if not present
