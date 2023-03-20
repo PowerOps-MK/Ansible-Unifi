@@ -104,7 +104,7 @@ def authenticate(module):
 
 
 # Get existing resources from the REST API
-def get_resource():
+def get_resource(module):
     try:
         # Authenticate to the REST API
         session = authenticate(module)
