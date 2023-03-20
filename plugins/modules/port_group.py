@@ -103,6 +103,20 @@ def authenticate(module):
         module.fail_json(msg="Authenication to API had failed")
 
 
+# Get existing resources from the REST API
+def get_resource():
+    try:
+        # Authenticate to the REST API
+        session = authenticate(module)
+
+        resources = session.get(url=api_url, validate_certs=False)
+        resources_dict = json.loads(resources.read())["data"]
+
+        return resources_dict
+    except BaseException:
+        module.fail_json(msg="Getting resources from API had failed")
+
+
 # Apply config if not present
 def present(module):
     try:
@@ -114,6 +128,9 @@ def present(module):
             "group_type": module.params["type"],
             "group_members": module.params["members"],
         }
+
+        # Authenticate to the REST API
+        session = authenticate(module)
 
         # Get existing resources
         resources = session.get(url=api_url, validate_certs=False)
@@ -177,9 +194,6 @@ def main():
     # if check mode, return the current state
     if module.check_mode:
         module.exit_json(changed=False)
-
-    # Authenticate to the REST API
-    session = authenticate(module)
 
     # Run function based on the passed state
     changed, result = choice_map.get(module.params["state"])(module)
