@@ -115,9 +115,6 @@ def present(module):
             "group_members": module.params["members"],
         }
 
-        # Authenticate to the REST API
-        session = authenticate(module)
-
         # Get existing resources
         resources = session.get(url=api_url, validate_certs=False)
         resources_dict = json.loads(resources.read())["data"]
@@ -180,6 +177,9 @@ def main():
     # if check mode, return the current state
     if module.check_mode:
         module.exit_json(changed=False)
+
+    # Authenticate to the REST API
+    session = authenticate(module)
 
     # Run function based on the passed state
     changed, result = choice_map.get(module.params["state"])(module)
