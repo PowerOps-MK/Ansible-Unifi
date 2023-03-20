@@ -166,9 +166,9 @@ def absent(module):
         resources_dict = json.loads(resources.read())["data"]
 
         # Delete resource if exist
-        exist = get_resource(module)
-        
-        response = session.delete(url=exist, validate_certs=False)
+        existing_url = get_resource(module)
+
+        response = session.delete(url=existing_url, validate_certs=False)
         changed = True
         result = response.read()
 
