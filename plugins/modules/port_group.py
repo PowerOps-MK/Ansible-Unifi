@@ -166,12 +166,11 @@ def absent(module):
         resources_dict = json.loads(resources.read())["data"]
 
         # Delete resource if exist
-        for resource in resources_dict:
-            if resource["name"] == module.params["name"]:
-                delete_url = f"{api_url}/{resource['_id']}"
-                response = session.delete(url=delete_url, validate_certs=False)
-                changed = True
-                result = response.read()
+        exist = get_resource(module)
+        
+        response = session.delete(url=exist, validate_certs=False)
+        changed = True
+        result = response.read()
 
         return changed, result
     except BaseException:
