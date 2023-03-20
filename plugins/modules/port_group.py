@@ -115,7 +115,7 @@ def get_resource(module):
         for resource in resources_dict:
             if resource["name"] == module.params["name"]:
                 return f"{api_url}/{resource['_id']}"
- 
+
     except BaseException:
         module.fail_json(msg="Getting resources from API had failed")
 
