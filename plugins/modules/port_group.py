@@ -112,7 +112,10 @@ def get_resource(module):
         resources = session.get(url=api_url, validate_certs=False)
         resources_dict = json.loads(resources.read())["data"]
 
-        return resources_dict
+        for resource in resources_dict:
+            if resource["name"] == module.params["name"]:
+                return f"{api_url}/{resource['_id']}"
+ 
     except BaseException:
         module.fail_json(msg="Getting resources from API had failed")
 
