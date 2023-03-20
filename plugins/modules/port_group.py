@@ -135,16 +135,18 @@ def present(module):
         # Authenticate to the REST API
         session = authenticate(module)
 
-        # Get existing resources
-        resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = json.loads(resources.read())["data"]
-
-        # Post data to the API
-        response = session.post(
-            url=api_url, validate_certs=False, data=json.dumps(payload)
-        )
-        changed = True
-        result = response.read()
+        # Put resource if exist, otherwise create
+        existing_url = get_resource(module)
+        if existing_url is not None:
+            response = ""
+            changed = True
+            result = response
+        else:
+            response = session.post(
+                url=api_url, validate_certs=False, data=json.dumps(payload)
+            )
+            changed = True
+            result = response.read()
 
         return changed, result
     except BaseException:
