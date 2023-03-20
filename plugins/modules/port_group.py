@@ -161,16 +161,12 @@ def absent(module):
         # Authenticate to the REST API
         session = authenticate(module)
 
-        # Get existing resources
-        resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = json.loads(resources.read())["data"]
-
         # Delete resource if exist
         existing_url = get_resource(module)
-
-        response = session.delete(url=existing_url, validate_certs=False)
-        changed = True
-        result = response.read()
+        if existing_url is not None:
+            response = session.delete(url=existing_url, validate_certs=False)
+            changed = True
+            result = response.read()
 
         return changed, result
     except BaseException:
