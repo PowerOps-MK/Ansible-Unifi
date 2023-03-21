@@ -13,7 +13,7 @@
   - name: Run the custom module present 2
     unifi.network.port_group:
       state: present
-      name: "Test-PortGroup"
+      name: "API-PortGroup"
       type: "port-group"
       members: 
         - 8888
