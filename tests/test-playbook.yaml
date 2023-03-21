@@ -10,7 +10,6 @@
       members: 
         - 8443
         - 8080
-    register: testout
   - name: Run the custom module present 2
     unifi.network.port_group:
       state: present
@@ -22,8 +21,7 @@
   - name: Run the custom module absent
     unifi.network.port_group:
       state: absent
-      name: "API-PortGroup"
-    register: testout
+      name: "API-PortGroup"  
   - name: dump test output
     debug:
       msg: "{{ testout }}"
