@@ -21,7 +21,11 @@
   - name: Run the custom module absent
     unifi.network.port_group:
       state: absent
-      name: "API-PortGroup"  
+      name: "Delete-PortGroup"
+  - name: Run the custom module absent 2
+    unifi.network.port_group:
+      state: absent
+      name: "API-PortGroup"
   - name: dump test output
     debug:
       msg: "{{ testout }}"
