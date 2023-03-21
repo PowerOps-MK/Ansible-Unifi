@@ -94,7 +94,6 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
 
-
     def authenticate2(self):
         """Authenticate to the REST API"""
         try:
