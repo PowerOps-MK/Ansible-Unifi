@@ -95,6 +95,19 @@ class FirewallGroup(object):
         self._module = module
 
 
+    def authenticate2(module):
+        """Authenticate to the REST API"""
+        try:
+            payload = {"username": username, "password": password}
+
+            session = Request()  # pylint: disable=E0602
+            session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+
+            return session
+        except BaseException:
+            self._module.fail_json(msg="Authenication to API had failed")
+
+
 def authenticate(module):
     """Authenticate to the REST API"""
     try:
