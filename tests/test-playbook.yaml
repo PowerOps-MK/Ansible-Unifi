@@ -10,6 +10,7 @@
       members: 
         - 8443
         - 8080
+    register: testout
   - name: Run the custom module present 2
     unifi.network.port_group:
       state: present
@@ -17,6 +18,7 @@
       type: "port-group"
       members: 
         - 8888
+    register: testout
   - name: Run the custom module absent
     unifi.network.port_group:
       state: absent
