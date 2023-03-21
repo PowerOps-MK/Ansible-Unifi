@@ -89,7 +89,12 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
 
-# Functions
+class FirewallGroup(object):
+    def __init__(self, module):
+        self._module = module
+
+        
+
 # Authenticate to the REST API
 def authenticate(module):
     try:
