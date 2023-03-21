@@ -139,13 +139,13 @@ def present(module):
         existing_url = get_resource(module)
         if existing_url is not None:
             response = session.put(
-                url=existing_url, validate_certs=False, data=json.dumps(payload)
+                url=existing_url, validate_certs=False, data=module.jsonify(payload)
             )
             changed = True
             result = response.read()
         else:
             response = session.post(
-                url=api_url, validate_certs=False, data=json.dumps(payload)
+                url=api_url, validate_certs=False, data=module.jsonify(payload)
             )
             changed = True
             result = response.read()
