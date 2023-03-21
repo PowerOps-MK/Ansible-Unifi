@@ -101,7 +101,7 @@ class FirewallGroup(object):
             payload = {"username": username, "password": password}
 
             session = Request()  # pylint: disable=E0602
-            session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+            session.post(url=login_url, validate_certs=False, data=self._module.jsonify(payload))
 
             return session
         except BaseException:
