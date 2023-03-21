@@ -89,13 +89,14 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
 
+# Functions
 class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
 
 
-# Authenticate to the REST API
 def authenticate(module):
+    """Authenticate to the REST API"""
     try:
         payload = {"username": username, "password": password}
 
@@ -107,8 +108,8 @@ def authenticate(module):
         module.fail_json(msg="Authenication to API had failed")
 
 
-# Get existing resources from the REST API
 def get_resource(module):
+    """Get existing resources from the REST API"""
     try:
         # Authenticate to the REST API
         session = authenticate(module)
@@ -124,8 +125,8 @@ def get_resource(module):
         module.fail_json(msg="Getting resources from API had failed")
 
 
-# Apply config if not present
 def present(module):
+    """Apply config if not present"""
     try:
         # Initialize variables
         changed = False
@@ -159,8 +160,8 @@ def present(module):
         module.fail_json(msg="Creating of resource failed")
 
 
-# Remove config if not present
 def absent(module):
+    """Remove config if not present"""
     try:
         # Initialize variables
         changed = False
