@@ -202,7 +202,7 @@ def main():
     if module.check_mode:
         module.exit_json(changed=False)
 
-    # Create Class instance 
+    # Create Class instance
     firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
