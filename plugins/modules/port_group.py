@@ -95,7 +95,7 @@ class FirewallGroup(object):
         self._module = module
 
 
-    def authenticate2(module):
+    def authenticate2(self):
         """Authenticate to the REST API"""
         try:
             payload = {"username": username, "password": password}
