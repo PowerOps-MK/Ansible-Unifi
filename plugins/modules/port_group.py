@@ -138,9 +138,11 @@ def present(module):
         # Put resource if exist, otherwise create
         existing_url = get_resource(module)
         if existing_url is not None:
-            response = ""
+            response = session.put(
+                url=existing_url, validate_certs=False, data=json.dumps(payload)
+            )
             changed = True
-            result = response
+            result = response.read()
         else:
             response = session.post(
                 url=api_url, validate_certs=False, data=json.dumps(payload)
