@@ -202,6 +202,9 @@ def main():
     if module.check_mode:
         module.exit_json(changed=False)
 
+    # Create Class instance 
+    firewall_group = FirewallGroup(module)
+
     # Run function based on the passed state
     changed, result = choice_map.get(module.params["state"])(module)
 
