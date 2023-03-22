@@ -108,6 +108,21 @@ class FirewallGroup(object):
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
+    def get_resource(self):
+        """Get existing resources from the REST API"""
+        try:
+            # Authenticate to the REST API
+            session = authenticate(self)
+
+            resources = session.get(url=api_url, validate_certs=False)
+            resources_dict = json.loads(resources.read())["data"]
+
+            for resource in resources_dict:
+                if resource["name"] == self._module.params["name"]:
+                    return f"{api_url}/{resource['_id']}"
+
+        except BaseException:
+            self._module.fail_json(msg="Getting resources from API had failed")
 
 def authenticate(module):
     """Authenticate to the REST API"""
