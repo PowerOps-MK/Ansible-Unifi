@@ -133,7 +133,7 @@ class FirewallGroup(object):
                     validate_certs=False,
                 )
                 self.changed = True
-                self.result = response.read()
+                self.result = self._resource  # response.read()
 
             return self.changed, self.result
         except BaseException:
