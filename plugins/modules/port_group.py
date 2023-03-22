@@ -91,7 +91,6 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
-        self._session = None
         self.changed = False
         self.result = ""
 
@@ -183,7 +182,7 @@ def main():
         required_if=(("state", "present", ["type", "members"]),),
     )
 
-    # choice_map = {"present": present, "absent": absent}
+    choice_map = {"present": firewall_group.present, "absent": firewall_group.absent}
 
     # if check mode, return the current state
     if module.check_mode:
@@ -193,7 +192,7 @@ def main():
     firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
-    changed, result = firewall_group.present()
+    changed, result = firewall_group.absent()
     # choice_map.get(module.params["state"])(module)
 
     # Return message as output
