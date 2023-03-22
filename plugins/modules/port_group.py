@@ -129,7 +129,7 @@ class FirewallGroup(object):
         try:
             if self._resource is not None:
                 response = self._session.delete(
-                    url=self._resource, 
+                    url=self._resource,
                     validate_certs=False,
                 )
                 self.changed = True
