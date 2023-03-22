@@ -121,8 +121,9 @@ class FirewallGroup(object):
                 if resource["name"] == self._module.params["name"]:
                     return f"{api_url}/{resource['_id']}"
 
-        except BaseException:
-            self._module.fail_json(msg="Getting resources from API had failed")
+        except BaseException as e:
+            # self._module.fail_json(msg="Getting resources from API had failed")
+            self._module.fail_json(msg=e)
 
     def present(self):
         """Apply config if not present"""
