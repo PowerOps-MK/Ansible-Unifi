@@ -91,11 +91,10 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
-        self._session = None
         self.changed = False
         self.result = ""
 
-        self._authenticate()
+        self._session = self._authenticate()
         self._get_resource()
 
     def _authenticate(self):
