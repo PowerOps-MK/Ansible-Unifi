@@ -95,7 +95,7 @@ class FirewallGroup(object):
         self.changed = False
         self.result = ""
 
-        self._session = self._authenticate()
+        self._authenticate()
         self._get_resource()
 
     def _authenticate(self):
@@ -108,7 +108,7 @@ class FirewallGroup(object):
                 url=login_url, validate_certs=False, data=self._module.jsonify(payload)
             )
 
-            return self._session
+            # return self._session
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
