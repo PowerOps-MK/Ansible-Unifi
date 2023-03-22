@@ -92,6 +92,8 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
+        self.changed = False
+        self.result = ""
 
         self._authenticate()
         self._get_resource()
@@ -125,16 +127,15 @@ class FirewallGroup(object):
     def absent(self):
         """Remove config if not present"""
         try:
-            # Initialize variables
-            changed = False
-            result = ""
-
             if self._resource is not None:
-                response = self._session.delete(url=self._resource, validate_certs=False)
-                changed = True
-                result = response.read()
+                response = self._session.delete(
+                    url=self._resource, 
+                    validate_certs=False,
+                )
+                self.changed = True
+                self.result = response.read()
 
-            return changed, result
+            return self.changed, self.result
         except BaseException:
             self._module.fail_json(msg="Deleting of resource failed")
 
