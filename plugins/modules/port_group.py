@@ -164,8 +164,8 @@ class FirewallGroup(object):
             self._changed = True
             self._result = response.read()
             return self._changed, self._result
-        except BaseException:
-            self._module.fail_json(msg="Creating of resource failed")
+        except BaseException as e:
+            self._module.fail_json(msg=e)
 
 
 # Run basic Ansible function
