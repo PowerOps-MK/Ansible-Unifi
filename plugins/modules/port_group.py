@@ -49,14 +49,14 @@ EXAMPLES = r"""
     state: present
     name: "API-PortGroup"
     type: "port-group"
-    members: 
+    members:
       - 8443
       - 8080
 
 - name: Run the custom module absent
-    unifi.network.port_group:
-      state: absent
-      name: "API-PortGroup"
+  unifi.network.port_group:
+    state: absent
+    name: "API-PortGroup"
 """
 
 RETURN = r"""
