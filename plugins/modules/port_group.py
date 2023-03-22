@@ -108,6 +108,7 @@ class FirewallGroup(object):
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
+"""
     def _get_resource(self):
         """Get existing resources from the REST API"""
         try:
@@ -183,7 +184,7 @@ class FirewallGroup(object):
             return changed, result
         except BaseException:
             self._module.fail_json(msg="Deleting of resource failed")
-
+"""
 
 # Run basic Ansible function
 def main():
