@@ -91,10 +91,10 @@ password = "6VK8eK92ePP*dHR6"
 class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
-        self._session = ""
-        self._resource = ""
+        self._authenticate(self)
+        self._get_resource(self)
 
-    def authenticate(self):
+    def _authenticate(self):
         """Authenticate to the REST API"""
         try:
             payload = {"username": username, "password": password}
@@ -108,7 +108,7 @@ class FirewallGroup(object):
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
-    def get_resource(self):
+    def _get_resource(self):
         """Get existing resources from the REST API"""
         try:
             # Authenticate to the REST API
