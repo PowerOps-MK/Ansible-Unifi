@@ -147,6 +147,8 @@ class FirewallGroup(object):
                 "group_type": self._module.params["type"],
                 "group_members": self._module.params["members"],
             }
+            self._changed = True
+            self._result = response.read()
 
             if self._resource is not None:
                 response = self._session.put(
@@ -154,16 +156,12 @@ class FirewallGroup(object):
                     validate_certs=False,
                     data=self._module.jsonify(payload),
                 )
-                self._changed = True
-                self._result = response.read()
             else:
                 response = self._session.post(
                     url=api_url,
                     validate_certs=False,
                     data=self._module.jsonify(payload),
                 )
-                self._changed = True
-                self._result = response.read()
 
             return self._changed, self._result
         except BaseException:
@@ -194,7 +192,7 @@ def main():
     firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
-    changed, result = firewall_group.absent()
+    changed, result = firewall_group.present()
     # choice_map.get(module.params["state"])(module)
 
     # Return message as output
