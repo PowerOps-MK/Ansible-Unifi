@@ -204,7 +204,7 @@ def get_resource(module):
         session = authenticate(module)
 
         resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = resources.read()["data"]
+        resources_dict = resources.json()["data"]
 
         for resource in resources_dict:
             if resource["name"] == module.params["name"]:
