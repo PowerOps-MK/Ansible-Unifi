@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# (c) 2012, Elliott Foster <elliott@fourkitchens.com>
+# (c) 2023, Mr PotatoHead <mrpotatohead@powerops.nl>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
@@ -41,7 +41,7 @@ options:
     elements: str
 
 author:
-    - "Julien Thebault (@Lujeni)"
+    - "Mr PotatoHead"
 """
 
 EXAMPLES = r"""
@@ -54,20 +54,16 @@ EXAMPLES = r"""
   my_namespace.my_collection.my_test:
     name: hello world
     new: true
-# fail the module
-- name: Test failure of the module
-  my_namespace.my_collection.my_test:
-    name: fail me
 """
 
 RETURN = r"""
 # These are examples of possible return values, and in general should use other names for return values.
-original_message:
+changed:
     description: The original name param that was passed in.
     type: str
     returned: always
     sample: 'hello world'
-message:
+result:
     description: The output message that the test module generates.
     type: str
     returned: always
