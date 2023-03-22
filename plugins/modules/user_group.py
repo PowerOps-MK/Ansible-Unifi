@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: port_group
+module: user_group
 short_description: Adds or removes a user from a MongoDB database
 description:
     - Adds or removes a user from a MongoDB database.
@@ -45,7 +45,7 @@ options:
 
 EXAMPLES = r"""
 - name: Run the custom module present
-  unifi.network.port_group:
+  unifi.network.user_group:
     state: present
     name: "API-PortGroup"
     type: "port-group"
@@ -54,7 +54,7 @@ EXAMPLES = r"""
       - 8080
 
 - name: Run the custom module absent
-  unifi.network.port_group:
+  unifi.network.user_group:
     state: absent
     name: "API-PortGroup"
 """
