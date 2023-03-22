@@ -98,12 +98,11 @@ class FirewallGroup(object):
         try:
             payload = {"username": username, "password": password}
 
-            session = Request()  # pylint: disable=E0602
-            session.post(
+            self._session = Request()  # pylint: disable=E0602
+            self._session.post(
                 url=login_url, validate_certs=False, data=self._module.jsonify(payload)
             )
 
-            return session
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
