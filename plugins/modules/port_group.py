@@ -122,7 +122,7 @@ def main():
         required_if=(("state", "present", ["type", "members"]),),
     )
 
-    choice_map = {"present": present, "absent": absent}
+    # choice_map = {"present": present, "absent": absent}
 
     # if check mode, return the current state
     if module.check_mode:
@@ -135,7 +135,7 @@ def main():
     # changed, result = choice_map.get(module.params["state"])(module)
 
     # Return message as output
-    module.exit_json(changed=changed, meta=result)
+    # module.exit_json(changed=changed, meta=result)
 
 
 if __name__ == "__main__":
