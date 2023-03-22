@@ -94,7 +94,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
 
-    def authenticate2(self):
+    def authenticate(self):
         """Authenticate to the REST API"""
         try:
             payload = {"username": username, "password": password}
@@ -123,6 +123,7 @@ class FirewallGroup(object):
 
         except BaseException:
             self._module.fail_json(msg="Getting resources from API had failed")
+
 
 def authenticate(module):
     """Authenticate to the REST API"""
