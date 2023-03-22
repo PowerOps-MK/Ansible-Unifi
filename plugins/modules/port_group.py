@@ -139,6 +139,36 @@ class FirewallGroup(object):
         except BaseException:
             self._module.fail_json(msg="Deleting of resource failed")
 
+    def present(self):
+        """Apply config if not present"""
+        try:
+            payload = {
+                "name": self._module.params["name"],
+                "group_type": self._module.params["type"],
+                "group_members": self._module.params["members"],
+            }
+
+            if self._resource is not None:
+                response = self._session.put(
+                    url=self._resource,
+                    validate_certs=False,
+                    data=self._module.jsonify(payload),
+                )
+                self._changed = True
+                self._result = response.read()
+            else:
+                response = self._session.post(
+                    url=api_url,
+                    validate_certs=False,
+                    data=self._module.jsonify(payload),
+                )
+                self._changed = True
+                self._result = response.read()
+
+            return self._changed, self._result
+        except BaseException:
+            self._module.fail_json(msg="Creating of resource failed")
+
 
 # Run basic Ansible function
 def main():
