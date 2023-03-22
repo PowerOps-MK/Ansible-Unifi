@@ -91,6 +91,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
+        self._session = None
         self.changed = False
         self.result = ""
 
@@ -162,7 +163,7 @@ class FirewallGroup(object):
                 )
 
             self._changed = True
-            self._result = self._session.read()  # response.read()
+            self._result = response.read()
             return self._changed, self._result
         except BaseException:
             self._module.fail_json(msg="Failed to create the resource")
