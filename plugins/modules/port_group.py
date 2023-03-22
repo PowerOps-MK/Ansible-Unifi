@@ -143,16 +143,16 @@ class FirewallGroup(object):
             existing_url = get_resource(self)
             if existing_url is not None:
                 response = session.put(
-                    url=existing_url, 
-                    validate_certs=False, 
+                    url=existing_url,
+                    validate_certs=False,
                     data=self._module.jsonify(payload),
                 )
                 changed = True
                 result = response.read()
             else:
                 response = session.post(
-                    url=api_url, 
-                    validate_certs=False, 
+                    url=api_url,
+                    validate_certs=False,
                     data=self._module.jsonify(payload),
                 )
                 changed = True
@@ -204,7 +204,7 @@ def get_resource(module):
         session = authenticate(module)
 
         resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = json.loads(resources.read())["data"]
+        resources_dict = resources.read()["data"]
 
         for resource in resources_dict:
             if resource["name"] == module.params["name"]:
