@@ -147,8 +147,6 @@ class FirewallGroup(object):
                 "group_type": self._module.params["type"],
                 "group_members": self._module.params["members"],
             }
-            self._changed = True
-            self._result = response.read()
 
             if self._resource is not None:
                 response = self._session.put(
@@ -163,6 +161,8 @@ class FirewallGroup(object):
                     data=self._module.jsonify(payload),
                 )
 
+            self._changed = True
+            self._result = response.read()
             return self._changed, self._result
         except BaseException:
             self._module.fail_json(msg="Creating of resource failed")
