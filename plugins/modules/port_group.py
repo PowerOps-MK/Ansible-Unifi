@@ -141,7 +141,7 @@ class FirewallGroup(object):
             session = authenticate(self)
 
             # Put resource if exist, otherwise create
-            existing_url = get_resource(module)
+            existing_url = get_resource(self)
             if existing_url is not None:
                 response = session.put(
                     url=existing_url, validate_certs=False, data=self._module.jsonify(payload)
