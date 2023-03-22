@@ -1,0 +1,20 @@
+---
+- name: Test custom module
+  hosts: localhost
+  tasks:
+  - name: Run the custom module present
+    unifi.network.user_group:
+      state: present
+      name: "API-PortGroup"
+      type: "port-group"
+      members: 
+        - 8443
+        - 8080
+  - name: Run the custom module absent
+    unifi.network.user_group:
+      state: absent
+      name: "API-PortGroup"
+    register: testout
+  - name: dump test output
+    debug:
+      msg: "{{ testout }}"
