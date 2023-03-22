@@ -91,6 +91,8 @@ password = "6VK8eK92ePP*dHR6"
 class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
+        self._resource = None
+
         self._authenticate()
         self._get_resource()
 
@@ -126,7 +128,12 @@ class FirewallGroup(object):
             # Initialize variables
             changed = False
             result = ""
-            result = self._session
+
+            if self._resource is not None:
+                response = self._session.delete(url=self._resource, validate_certs=False)
+                changed = True
+                result = response.read()
+
             return changed, result
         except BaseException:
             self._module.fail_json(msg="Deleting of resource failed")
