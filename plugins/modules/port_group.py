@@ -43,24 +43,28 @@ options:
 """
 
 EXAMPLES = r"""
-# Pass in a message
-- name: Test with a message
-  my_namespace.my_collection.my_test:
-    name: hello world
-# pass in a message and have changed true
-- name: Test with a message and changed output
-  my_namespace.my_collection.my_test:
-    name: hello world
-    new: true
+- name: Run the custom module present
+  unifi.network.port_group:
+    state: present
+    name: "API-PortGroup"
+    type: "port-group"
+    members: 
+      - 8443
+      - 8080
+
+- name: Run the custom module absent
+    unifi.network.port_group:
+      state: absent
+      name: "API-PortGroup"
 """
 
 RETURN = r"""
 # These are examples of possible return values, and in general should use other names for return values.
 changed:
     description: The original name param that was passed in.
-    type: str
+    type: bool
     returned: always
-    sample: 'hello world'
+    sample: 'False'
 result:
     description: The output message that the test module generates.
     type: str
