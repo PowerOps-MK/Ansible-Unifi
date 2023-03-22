@@ -133,7 +133,7 @@ class FirewallGroup(object):
                     validate_certs=False,
                 )
                 self.changed = True
-                self.result = self._resource  # response.read()
+                self.result = response.read()
 
             return self.changed, self.result
         except BaseException:
@@ -162,10 +162,10 @@ class FirewallGroup(object):
                 )
 
             self._changed = True
-            self._result = response.read()
+            self._result = self._session.read()  # response.read()
             return self._changed, self._result
-        except BaseException as e:
-            self._module.fail_json(msg=e)
+        except BaseException:
+            self._module.fail_json(msg="Failed to create the resource")
 
 
 # Run basic Ansible function
