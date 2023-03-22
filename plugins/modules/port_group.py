@@ -112,12 +112,25 @@ class FirewallGroup(object):
         try:
             resources = self._session.get(url=api_url, validate_certs=False)
             resources_dict = self._module.from_json(resources.read())["data"]
+
             for resource in resources_dict:
                 if resource["name"] == self._module.params["name"]:
-                    return f"{api_url}/{resource['_id']}"
+                    self._resource = f"{api_url}/{resource['_id']}"
 
         except BaseException:
             self._module.fail_json(msg="Getting resources from API had failed")
+
+    def absent(self):
+        """Remove config if not present"""
+        try:
+            # Initialize variables
+            changed = False
+            result = ""
+            
+            result = self._session
+            return changed, result
+        except BaseException:
+            self._module.fail_json(msg="Deleting of resource failed")
 
 
 # Run basic Ansible function
@@ -144,11 +157,11 @@ def main():
     firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
-    # changed, result = choice_map.get(module.params["state"])(module)
+    changed, result = firewall_group.absent()
+    # choice_map.get(module.params["state"])(module)
 
     # Return message as output
-    # module.exit_json(changed=changed, meta=result)
-    module.exit_json(changed=True)
+    module.exit_json(changed=changed, meta=result)
 
 
 if __name__ == "__main__":
