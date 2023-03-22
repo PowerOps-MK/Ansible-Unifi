@@ -79,7 +79,7 @@ from ansible.module_utils.urls import Request
 
 # Parameters
 site = "default"
-resource = "firewallgroup"
+resource = "usergroup"
 login_url = "https://localhost:8443/api/login"
 api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
@@ -87,7 +87,7 @@ password = "6VK8eK92ePP*dHR6"
 
 
 # Functions
-class FirewallGroup(object):
+class UserGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
@@ -183,10 +183,10 @@ def main():
     )
 
     # Create Class instance
-    firewall_group = FirewallGroup(module)
+    user_group = UserGroup(module)
 
     # Setup state mapping
-    choice_map = {"present": firewall_group.present, "absent": firewall_group.absent}
+    choice_map = {"present": user_group.present, "absent": user_group.absent}
 
     # If check mode, return the current state
     if module.check_mode:
