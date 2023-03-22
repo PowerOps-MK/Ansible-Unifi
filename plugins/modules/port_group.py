@@ -75,8 +75,6 @@ message:
 """
 
 # Modules
-import json
-
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import Request
 
@@ -94,6 +92,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._session = ""
+        self._resource = ""
 
     def authenticate(self):
         """Authenticate to the REST API"""
@@ -144,13 +143,17 @@ class FirewallGroup(object):
             existing_url = get_resource(self)
             if existing_url is not None:
                 response = session.put(
-                    url=existing_url, validate_certs=False, data=self._module.jsonify(payload)
+                    url=existing_url, 
+                    validate_certs=False, 
+                    data=self._module.jsonify(payload),
                 )
                 changed = True
                 result = response.read()
             else:
                 response = session.post(
-                    url=api_url, validate_certs=False, data=self._module.jsonify(payload)
+                    url=api_url, 
+                    validate_certs=False, 
+                    data=self._module.jsonify(payload),
                 )
                 changed = True
                 result = response.read()
