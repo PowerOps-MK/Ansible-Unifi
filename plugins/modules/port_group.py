@@ -14,8 +14,9 @@ module: port_group
 short_description: Adds or removes a user from a MongoDB database
 description:
     - Adds or removes a user from a MongoDB database.
+author:
+  - Mr PotatoHead (@mrpotatohead)
 version_added: "1.0.0"
-author: "Mr PotatoHead" (@MrPotatoHead)
 
 options:
   state:
