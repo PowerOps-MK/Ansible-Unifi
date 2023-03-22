@@ -185,93 +185,6 @@ class FirewallGroup(object):
             self._module.fail_json(msg="Deleting of resource failed")
 
 
-def authenticate(module):
-    """Authenticate to the REST API"""
-    try:
-        payload = {"username": username, "password": password}
-
-        session = Request()  # pylint: disable=E0602
-        session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
-
-        return session
-    except BaseException:
-        module.fail_json(msg="Authenication to API had failed")
-
-
-def get_resource(module):
-    """Get existing resources from the REST API"""
-    try:
-        # Authenticate to the REST API
-        session = authenticate(module)
-
-        resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = module.from_json(resources.read())["data"]
-
-        for resource in resources_dict:
-            if resource["name"] == module.params["name"]:
-                return f"{api_url}/{resource['_id']}"
-
-    except BaseException as e:
-        module.fail_json(msg=e)
-
-
-def present(module):
-    """Apply config if not present"""
-    try:
-        # Initialize variables
-        changed = False
-        result = ""
-        payload = {
-            "name": module.params["name"],
-            "group_type": module.params["type"],
-            "group_members": module.params["members"],
-        }
-
-        # Authenticate to the REST API
-        session = authenticate(module)
-
-        # Put resource if exist, otherwise create
-        existing_url = get_resource(module)
-        if existing_url is not None:
-            response = session.put(
-                url=existing_url, validate_certs=False, data=module.jsonify(payload)
-            )
-            changed = True
-            result = response.read()
-        else:
-            response = session.post(
-                url=api_url, validate_certs=False, data=module.jsonify(payload)
-            )
-            changed = True
-            result = response.read()
-
-        return changed, result
-    except BaseException:
-        module.fail_json(msg="Creating of resource failed")
-
-
-def absent(module):
-    """Remove config if not present"""
-    try:
-        # Initialize variables
-        changed = False
-        result = ""
-
-        # Authenticate to the REST API
-        session = authenticate(module)
-
-        # Delete resource if exist
-        existing_url = get_resource(module)
-        if existing_url is not None:
-            response = session.delete(url=existing_url, validate_certs=False)
-            changed = True
-            result = response.read()
-
-        return changed, result
-    except BaseException:
-        module.fail_json(msg="Deleting of resource failed")
-
-
 # Run basic Ansible function
 def main():
     # AnsibleModule object with parameters for abstraction
@@ -296,7 +209,7 @@ def main():
     firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
-    changed, result = choice_map.get(module.params["state"])(module)
+    # changed, result = choice_map.get(module.params["state"])(module)
 
     # Return message as output
     module.exit_json(changed=changed, meta=result)
