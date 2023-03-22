@@ -108,6 +108,7 @@ class FirewallGroup(object):
                 url=login_url, validate_certs=False, data=self._module.jsonify(payload)
             )
 
+            return self._session
         except BaseException:
             self._module.fail_json(msg="Authenication to API had failed")
 
