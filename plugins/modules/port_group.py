@@ -92,6 +92,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
+        self._session = None
         self.changed = False
         self.result = ""
 
