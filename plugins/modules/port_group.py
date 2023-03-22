@@ -126,7 +126,6 @@ class FirewallGroup(object):
             # Initialize variables
             changed = False
             result = ""
-            
             result = self._session
             return changed, result
         except BaseException:
