@@ -15,6 +15,7 @@ short_description: Adds or removes a user from a MongoDB database
 description:
     - Adds or removes a user from a MongoDB database.
 version_added: "1.0.0"
+author: "Mr PotatoHead" (@MrPotatoHead)
 
 options:
   state:
@@ -39,9 +40,6 @@ options:
     required: false
     type: list
     elements: str
-
-author:
-    - "Mr PotatoHead"
 """
 
 EXAMPLES = r"""
