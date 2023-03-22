@@ -186,14 +186,14 @@ def main():
     firewall_group = FirewallGroup(module)
 
     # Setup state mapping
-    choice_map = {"present": firewall_group.absent(), "absent": firewall_group.absent()}
+    choice_map = {"present": firewall_group.present, "absent": firewall_group.absent}
 
     # If check mode, return the current state
     if module.check_mode:
         module.exit_json(changed=False)
 
     # Run function based on the passed state
-    changed, result = choice_map.get(module.params["state"])
+    changed, result = choice_map.get(module.params["state"])()
 
     # Return message as output
     module.exit_json(changed=changed, meta=result)
