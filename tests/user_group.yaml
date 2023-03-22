@@ -5,7 +5,7 @@
   - name: Run the custom module present
     unifi.network.user_group:
       state: present
-      name: "API-PortGroup"
+      name: "API-UserGroup"
       type: "port-group"
       members: 
         - 8443
@@ -13,7 +13,7 @@
   - name: Run the custom module absent
     unifi.network.user_group:
       state: absent
-      name: "API-PortGroup"
+      name: "API-UserGroup"
     register: testout
   - name: dump test output
     debug:
