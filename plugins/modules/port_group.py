@@ -92,6 +92,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._authenticate()
+        self._get_resource()
 
     def _authenticate(self):
         """Authenticate to the REST API"""
@@ -114,6 +115,7 @@ class FirewallGroup(object):
             for resource in resources_dict:
                 if resource["name"] == self._module.params["name"]:
                     return f"{api_url}/{resource['_id']}"
+
         except BaseException:
             self._module.fail_json(msg="Getting resources from API had failed")
 
