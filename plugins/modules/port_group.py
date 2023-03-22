@@ -292,7 +292,7 @@ def main():
         module.exit_json(changed=False)
 
     # Create Class instance
-    # firewall_group = FirewallGroup(module)
+    firewall_group = FirewallGroup(module)
 
     # Run function based on the passed state
     changed, result = choice_map.get(module.params["state"])(module)
