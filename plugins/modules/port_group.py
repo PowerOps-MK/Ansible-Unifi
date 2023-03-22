@@ -136,6 +136,7 @@ def main():
 
     # Return message as output
     # module.exit_json(changed=changed, meta=result)
+    module.exit_json(changed=True)
 
 
 if __name__ == "__main__":
