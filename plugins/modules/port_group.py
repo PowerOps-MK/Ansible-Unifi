@@ -115,7 +115,7 @@ class FirewallGroup(object):
             session = authenticate(self)
 
             resources = session.get(url=api_url, validate_certs=False)
-            resources_dict = json.loads(resources.read())["data"]
+            resources_dict = resources.json()["data"]
 
             for resource in resources_dict:
                 if resource["name"] == self._module.params["name"]:
