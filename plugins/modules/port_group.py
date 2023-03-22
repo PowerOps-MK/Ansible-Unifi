@@ -204,14 +204,14 @@ def get_resource(module):
         session = authenticate(module)
 
         resources = session.get(url=api_url, validate_certs=False)
-        resources_dict = module.from_json(resources)["data"]
+        resources_dict = (module.from_json(resources))["data"]
 
         for resource in resources_dict:
             if resource["name"] == module.params["name"]:
                 return f"{api_url}/{resource['_id']}"
 
-    except BaseException:
-        module.fail_json(msg="Getting resources from API had failed")
+    except BaseException as e:
+        module.fail_json(msg=e)
 
 
 def present(module):
