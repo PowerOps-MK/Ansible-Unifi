@@ -192,8 +192,7 @@ def main():
         module.exit_json(changed=False)
 
     # Run function based on the passed state
-    changed, result = firewall_group.absent()
-    # choice_map.get(module.params["state"])(module)
+    changed, result = choice_map.get(module.params["state"])
 
     # Return message as output
     module.exit_json(changed=changed, meta=result)
