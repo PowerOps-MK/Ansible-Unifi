@@ -91,8 +91,8 @@ password = "6VK8eK92ePP*dHR6"
 class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
-        self._authenticate(self)
-        self._get_resource(self)
+        self._authenticate()
+        self._get_resource()
 
     def _authenticate(self):
         """Authenticate to the REST API"""
