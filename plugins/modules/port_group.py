@@ -185,7 +185,7 @@ def main():
     # Create Class instance
     firewall_group = FirewallGroup(module)
 
-    choice_map = {"present": firewall_group.present, "absent": firewall_group.absent}
+    choice_map = {"present": "firewall_group.present", "absent": "firewall_group.absent"}
 
     # if check mode, return the current state
     if module.check_mode:
