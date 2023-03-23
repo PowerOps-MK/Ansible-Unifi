@@ -2,15 +2,13 @@
 - name: Test custom module
   hosts: localhost
   tasks:
-  - name: Run the custom module present
+  - name: Test present usergroup
     unifi.network.user_group:
       state: present
       name: "API-UserGroup"
-      type: "port-group"
-      members: 
-        - 8443
-        - 8080
-  - name: Run the custom module absent
+      qos_down: -1
+      qos_up: -1
+  - name: Test absent usergroup
     unifi.network.user_group:
       state: absent
       name: "API-UserGroup"
