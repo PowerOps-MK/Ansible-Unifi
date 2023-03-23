@@ -11,9 +11,9 @@ __metaclass__ = type
 DOCUMENTATION = """
 ---
 module: port_group
-short_description: Adds or removes a user from a MongoDB database
+short_description: Adds or removes a portgroup to a Unifi Network.
 description:
-    - Adds or removes a user from a MongoDB database.
+    - Adds or removes a portgroup to a Unifi Network via the REST API.
 author:
   - Mr PotatoHead (@mrpotatohead)
 version_added: "1.0.0"
