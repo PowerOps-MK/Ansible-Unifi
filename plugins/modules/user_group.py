@@ -43,33 +43,28 @@ options:
 """
 
 EXAMPLES = r"""
-- name: Run the custom module present
+- name: Test present usergroup
   unifi.network.user_group:
     state: present
-    name: "API-PortGroup"
-    type: "port-group"
-    members:
-      - 8443
-      - 8080
-
-- name: Run the custom module absent
+    name: "API-UserGroup"
+    qos_down: -1
+    qos_up: -1
+    
+- name: Test absent usergroup
   unifi.network.user_group:
     state: absent
-    name: "API-PortGroup"
+    name: "API-UserGroup"
 """
 
 RETURN = r"""
-# These are examples of possible return values, and in general should use other names for return values.
 changed:
-    description: The original name param that was passed in.
+    description: boolean if a resource is changed.
     type: bool
     returned: always
-    sample: 'False'
 result:
-    description: The output message that the test module generates.
+    description: json parsed response from the server.
     type: str
     returned: always
-    sample: 'goodbye'
 """
 
 # Modules
