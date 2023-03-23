@@ -60,17 +60,14 @@ EXAMPLES = r"""
 """
 
 RETURN = r"""
-# These are examples of possible return values, and in general should use other names for return values.
 changed:
-    description: The original name param that was passed in.
+    description: boolean if a resource is changed.
     type: bool
     returned: always
-    sample: 'False'
 result:
-    description: The output message that the test module generates.
+    description: json parsed response from the server.
     type: str
     returned: always
-    sample: 'goodbye'
 """
 
 # Modules
