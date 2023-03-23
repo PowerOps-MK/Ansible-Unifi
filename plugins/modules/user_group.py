@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 # (c) 2023, Mr PotatoHead <mrpotatohead@powerops.nl>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -49,7 +50,7 @@ EXAMPLES = r"""
     name: "API-UserGroup"
     qos_down: -1
     qos_up: -1
-    
+
 - name: Test absent usergroup
   unifi.network.user_group:
     state: absent
