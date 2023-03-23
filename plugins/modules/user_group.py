@@ -143,8 +143,8 @@ class UserGroup(object):
         try:
             payload = {
                 "name": self._module.params["name"],
-                "group_type": self._module.params["type"],
-                "group_members": self._module.params["members"],
+                "group_type": self._module.params["qos_down"],
+                "group_members": self._module.params["qos_up"],
             }
 
             if self._resource is not None:
