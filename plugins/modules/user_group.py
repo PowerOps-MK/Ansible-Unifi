@@ -163,8 +163,8 @@ class UserGroup(object):
             self._changed = True
             self._result = response.read()
             return self._changed, self._result
-        except BaseException:
-            self._module.fail_json(msg="Failed to create the resource")
+        except BaseException as e:
+            self._module.fail_json(msg=e)  # "Failed to create the resource")
 
 
 # Run basic Ansible function
