@@ -2,7 +2,7 @@
 - name: Test custom module
   hosts: localhost
   tasks:
-  - name: Run the custom module present
+  - name: Test present portgroup
     unifi.network.port_group:
       state: present
       name: "API-PortGroup"
@@ -10,7 +10,7 @@
       members: 
         - 8443
         - 8080
-  - name: Run the custom module absent
+  - name: Test absent portgroup
     unifi.network.port_group:
       state: absent
       name: "API-PortGroup"
