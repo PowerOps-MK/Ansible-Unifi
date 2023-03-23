@@ -30,17 +30,16 @@ options:
       - The name of the user to add or remove.
     required: true
     type: str
-  type:
+  qos_down:
     description:
       - The name of the user to add or remove.
     required: false
-    type: str
-  members:
+    type: int
+  qos_up:
     description:
       - The list of members like ["8443", "8080"]
     required: false
-    type: list
-    elements: str
+    type: int
 """
 
 EXAMPLES = r"""
@@ -175,11 +174,11 @@ def main():
         argument_spec=dict(
             state=dict(type="str", default="present", choices=["present", "absent"]),
             name=dict(type="str", required=True),
-            type=dict(type="str", required=False),
-            members=dict(type="list", elements="str", required=False),
+            qos_down=dict(type="int", required=False),
+            qos_up=dict(type="int", required=False),
         ),
         supports_check_mode=True,
-        required_if=(("state", "present", ["type", "members"]),),
+        required_if=(("state", "present", ["qos_down", "qos_up"]),),
     )
 
     # Create Class instance
