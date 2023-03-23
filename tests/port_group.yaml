@@ -10,11 +10,11 @@
       members: 
         - 8443
         - 8080
+    register: testout
   - name: Test absent portgroup
     unifi.network.port_group:
       state: absent
       name: "API-PortGroup"
-    register: testout
   - name: dump test output
     debug:
       msg: "{{ testout }}"
