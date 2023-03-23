@@ -8,11 +8,11 @@
       name: "API-UserGroup"
       qos_down: -1
       qos_up: -1
+    register: testout
   - name: Test absent usergroup
     unifi.network.user_group:
       state: absent
       name: "API-UserGroup"
-    register: testout
   - name: dump test output
     debug:
       msg: "{{ testout }}"
