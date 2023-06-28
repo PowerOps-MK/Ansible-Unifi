@@ -76,22 +76,19 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import Request
 
 # Parameters
-site = "default"
-resource = "firewallgroup"
 login_url = "https://localhost:8443/api/login"
-api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 
 
 # Functions
-def _authenticate(self):
+def authenticate(self):
     """Authenticate to the REST API"""
     try:
         payload = {"username": username, "password": password}
 
-        self._session = Request()  # pylint: disable=E060
-        self._session.post(
+        session = Request()  # pylint: disable=E060
+        session.post(
             url=login_url, validate_certs=False, data=self._module.jsonify(payload)
         )
 
@@ -103,7 +100,7 @@ def main():
     # AnsibleModule object with parameters for abstraction
     module = AnsibleModule(argument_spec={})
     
-    session = _authenticate()
+    session = authenticate(module)
     module.exit_json(changed=False, ansible_facts={"unifi_session": session})
 
 
