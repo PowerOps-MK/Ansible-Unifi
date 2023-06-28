@@ -95,11 +95,12 @@ def authenticate(self):
     except BaseException:
         self._module.fail_json(msg="Authenication to API had failed")
 
+
 # Run basic Ansible function
 def main():
     # AnsibleModule object with parameters for abstraction
     module = AnsibleModule(argument_spec={})
-    
+
     session = authenticate(module)
     module.exit_json(changed=False, ansible_facts={"unifi_session": session})
 
