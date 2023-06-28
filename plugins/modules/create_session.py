@@ -18,8 +18,6 @@ description:
 author:
   - Mr PotatoHead (@mrpotatohead)
 version_added: "1.0.0"
-
-options:
 """
 
 EXAMPLES = r"""
@@ -53,7 +51,7 @@ def authenticate(self):
     try:
         payload = {"username": username, "password": password}
 
-        session = Request()  # pylint: disable=E060
+        session = Request()  # pylint: disable=E0602
         session.post(
             url=login_url, validate_certs=False, data=self._module.jsonify(payload)
         )
