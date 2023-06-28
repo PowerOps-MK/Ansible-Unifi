@@ -11,63 +11,29 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: port_group
-short_description: Adds or removes a portgroup to a Unifi Network.
+module: create_session
+short_description: Create a session object.
 description:
-    - Adds or removes a portgroup to a Unifi Network via the REST API.
+    - Creates a session object with authentication to a Unifi Network via the REST API.
 author:
   - Mr PotatoHead (@mrpotatohead)
 version_added: "1.0.0"
 
 options:
-  state:
-    description:
-      - The name of the database to add/remove the user from.
-    default: 'present'
-    choices: ['present', 'absent']
-    type: str
-  name:
-    description:
-      - The name of the user to add or remove.
-    required: true
-    type: str
-  type:
-    description:
-      - The name of the user to add or remove.
-    required: false
-    type: str
-  members:
-    description:
-      - The list of members like ["8443", "8080"]
-    required: false
-    type: list
-    elements: str
 """
 
 EXAMPLES = r"""
-- name: Run the custom module present
-  unifi.network.port_group:
-    state: present
-    name: "API-PortGroup"
-    type: "port-group"
-    members:
-      - 8443
-      - 8080
+- name: Run the custom module
+  unifi.network.create_session:
 
-- name: Run the custom module absent
-  unifi.network.port_group:
-    state: absent
-    name: "API-PortGroup"
+- name: Run the custom module
+  unifi.network.create_session:
 """
 
 RETURN = r"""
 changed:
     description: boolean if a resource is changed.
     type: bool
-    returned: always
-result:
-    description: json parsed response from the server.
-    type: str
     returned: always
 """
 
@@ -91,6 +57,7 @@ def authenticate(self):
         session.post(
             url=login_url, validate_certs=False, data=self._module.jsonify(payload)
         )
+        return session
 
     except BaseException:
         self._module.fail_json(msg="Authenication to API had failed")
