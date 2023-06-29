@@ -52,7 +52,7 @@ def authenticate(module):
         payload = {"username": username, "password": password}
 
         session = Request()  # pylint: disable=E0602
-        # session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+        session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
         return session
 
     except BaseException:
@@ -65,7 +65,7 @@ def main():
     module = AnsibleModule(argument_spec={})
 
     session = authenticate(module)
-    module.exit_json(changed=False, ansible_facts={"unifi_session": session})
+    module.exit_json(changed=False, ansible_facts={"unifi_session": "session"})
 
 
 if __name__ == "__main__":
