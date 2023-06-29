@@ -53,6 +53,7 @@ def authenticate(module):
 
         session = Request()  # pylint: disable=E0602
         session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+        module.set_fact("unifi_session", session)
         return session
 
     except BaseException:
