@@ -2,6 +2,9 @@
 - name: Test custom module
   hosts: localhost
   tasks:
+  - name: Create session
+    unifi.network.create_session:
+    register: testout
   - name: Test present portgroup
     unifi.network.port_group:
       state: present
@@ -10,7 +13,7 @@
       members: 
         - 8443
         - 8080
-    register: testout
+    
   - name: Test absent portgroup
     unifi.network.port_group:
       state: absent
