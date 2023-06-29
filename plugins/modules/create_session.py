@@ -52,9 +52,7 @@ def authenticate(module):
         payload = {"username": username, "password": password}
 
         session = Request()  # pylint: disable=E0602
-        session.post(
-            url=login_url, validate_certs=False, data=module.jsonify(payload)
-        )
+        session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
         return session
 
     except BaseException:
