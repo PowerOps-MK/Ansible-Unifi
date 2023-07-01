@@ -65,7 +65,7 @@ def main():
     module = AnsibleModule(argument_spec={})
 
     session = authenticate(module)
-    module.exit_json(changed=False, ansible_facts={"unifi_session": "session"})
+    module.exit_json(changed=False, ansible_facts={"unifi_session": session})
 
 
 if __name__ == "__main__":
