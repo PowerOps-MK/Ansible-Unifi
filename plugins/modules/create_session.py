@@ -48,15 +48,16 @@ password = "6VK8eK92ePP*dHR6"
 # Function
 def authenticate(module):
     """Authenticate to the REST API"""
-    # try:
-    payload = {"username": username, "password": password}
+    try:
+        payload = {"username": username, "password": password}
+        
+        session = Request()  # pylint: disable=E0602
+        session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+        
+        return session
 
-    session = Request()  # pylint: disable=E0602
-    session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
-    return session
-
-    # except BaseException:
-    #    module.fail_json(msg="Authenication to API had failed")
+    except BaseException:
+        module.fail_json(msg="Authenication to API had failed")
 
 
 # Run basic Ansible function
