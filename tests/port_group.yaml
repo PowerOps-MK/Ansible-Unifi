@@ -19,4 +19,4 @@
       name: "API-PortGroup"
   - name: dump test output
     debug:
-      msg: "{{ testout.ansible_facts.unifi_session }}"
+      msg: "{{ testout }}"
