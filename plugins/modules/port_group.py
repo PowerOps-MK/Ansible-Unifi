@@ -73,7 +73,6 @@ result:
 
 # Modules
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import Request
 from create_session import session
 
 # Parameters
