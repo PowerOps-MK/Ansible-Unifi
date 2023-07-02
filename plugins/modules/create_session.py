@@ -43,18 +43,19 @@ from ansible.module_utils.urls import Request
 login_url = "https://localhost:8443/api/login"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
-
+session = None
 
 # Function
 def authenticate(module):
     """Authenticate to the REST API"""
     # try:
+    global session
     payload = {"username": username, "password": password}
 
     session = Request()  # pylint: disable=E0602
     session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
 
-    return session.__dict__
+    return session
 
     # except BaseException:
     # module.fail_json(msg="Authenication to API had failed")
@@ -66,7 +67,7 @@ def main():
     module = AnsibleModule(argument_spec={})
 
     session = authenticate(module)
-    module.exit_json(changed=False, ansible_facts={"unifi_session": session})
+    module.exit_json(changed=False)
 
 
 if __name__ == "__main__":
