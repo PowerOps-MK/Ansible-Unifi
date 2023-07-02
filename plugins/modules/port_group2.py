@@ -11,7 +11,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: port_group
+module: port_group2
 short_description: Adds or removes a portgroup to a Unifi Network.
 description:
     - Adds or removes a portgroup to a Unifi Network via the REST API.
