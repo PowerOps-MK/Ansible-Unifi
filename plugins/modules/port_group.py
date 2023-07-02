@@ -73,7 +73,7 @@ result:
 
 # Modules
 from ansible.module_utils.basic import AnsibleModule
-from create_session import session
+from ansible_collections.unifi.network.plugins.module_utils.create_session import session
 
 # Parameters
 site = "default"
