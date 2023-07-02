@@ -101,8 +101,8 @@ class FirewallGroup(object):
     def _authenticate(self):
         """Authenticate to the REST API"""
         payload = {"username": username, "password": password}
-        authenticate(self._module)
-        self._session = session
+        
+        self._session = authenticate(self._module)
 
     def _get_resource(self):
         """Get existing resources from the REST API"""
