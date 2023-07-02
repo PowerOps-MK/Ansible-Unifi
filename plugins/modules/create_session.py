@@ -57,7 +57,7 @@ def authenticate(module):
     return session_json
 
     # except BaseException:
-        # module.fail_json(msg="Authenication to API had failed")
+    # module.fail_json(msg="Authenication to API had failed")
 
 
 # Run basic Ansible function
