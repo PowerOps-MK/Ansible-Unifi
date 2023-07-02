@@ -110,7 +110,6 @@ class FirewallGroup(object):
             if resource["name"] == self._module.params["name"]:
                 self._resource = f"{api_url}/{resource['_id']}"
 
-
     def absent(self):
         """Remove config if not present"""
         try:
