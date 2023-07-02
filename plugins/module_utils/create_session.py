@@ -46,7 +46,7 @@ session = None
 
 
 # Function
-def authenticate(module):
+def authenticate():
     """Authenticate to the REST API"""
     # try:
     global session
@@ -63,12 +63,9 @@ def authenticate(module):
 
 # Run basic Ansible function
 def main():
-    # AnsibleModule object with parameters for abstraction
-    module = AnsibleModule(argument_spec={})
+    # AnsibleModule object with parameters for abstractio
 
     session = authenticate(module)
-    module.exit_json(changed=False)
-
 
 if __name__ == "__main__":
     main()
