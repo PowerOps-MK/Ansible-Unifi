@@ -74,7 +74,7 @@ result:
 # Modules
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.unifi.network.plugins.module_utils.create_session import (
-    session,
+    session, authenticate
 )
 
 # Parameters
@@ -101,6 +101,7 @@ class FirewallGroup(object):
     def _authenticate(self):
         """Authenticate to the REST API"""
         payload = {"username": username, "password": password}
+        authenticate(self._module)
         self._session = session
 
     def _get_resource(self):
