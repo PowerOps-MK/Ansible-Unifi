@@ -27,7 +27,7 @@ jobs:
     # Setup defaults for the steps within a job
     defaults:
       run:
-        working-directory: ansible_collections/community/unifi
+        working-directory: ansible_collections/unifi/network
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          path: ansible_collections/community/unifi
+          path: ansible_collections/unifi/network
 
       # Test the sanity of collection
       - name: Test sanity 
