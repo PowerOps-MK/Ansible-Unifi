@@ -45,6 +45,7 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 session = None
 
+
 # Function
 def authenticate(module):
     """Authenticate to the REST API"""
