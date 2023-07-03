@@ -37,15 +37,15 @@ changed:
 # Modules
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import Request
-import json
 
 # Parameters
 login_url = "https://localhost:8443/api/login"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
+payload_json = json_str = f'{{"username": "{username}", "password": "{password}"}}'
 session = Request()
-session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
+session.post(url=login_url, validate_certs=False, data=payload_json)
 
 
 # Function
