@@ -74,7 +74,7 @@ result:
 # Modules
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.unifi.network.plugins.module_utils.create_session import (
-    authenticate,
+    session,
 )
 
 # Parameters
@@ -88,7 +88,7 @@ class FirewallGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
-        self._session = authenticate(module)
+        self._session = session
         self.changed = False
         self.result = ""
 
