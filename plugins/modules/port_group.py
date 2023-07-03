@@ -104,8 +104,9 @@ class FirewallGroup(object):
         payload = {"username": username, "password": password}
 
         authenticate(self._module)
-        self._session = global session
-    
+        global session
+        self._session = session
+
     def _get_resource(self):
         """Get existing resources from the REST API"""
         resources = self._session.get(url=api_url, validate_certs=False)
