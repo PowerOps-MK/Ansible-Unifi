@@ -44,8 +44,8 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
 session = Request()
-module = AnsibleModule(argument_spec={})
-session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+module3 = AnsibleModule(argument_spec={})
+session.post(url=login_url, validate_certs=False, data=module3.jsonify(payload))
 
 
 # Function
