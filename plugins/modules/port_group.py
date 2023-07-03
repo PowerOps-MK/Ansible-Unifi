@@ -80,10 +80,7 @@ from ansible_collections.unifi.network.plugins.module_utils.create_session impor
 # Parameters
 site = "default"
 resource = "firewallgroup"
-login_url = "https://localhost:8443/api/login"
 api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
-username = "unifi"
-password = "6VK8eK92ePP*dHR6"
 
 
 # Functions
