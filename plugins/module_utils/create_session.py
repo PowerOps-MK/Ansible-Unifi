@@ -42,7 +42,7 @@ from ansible.module_utils.urls import Request
 login_url = "https://localhost:8443/api/login"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
-session = None
+session = Request()
 
 
 # Function
@@ -60,13 +60,6 @@ def authenticate(module):
 
     # except BaseException:
     # module.fail_json(msg="Authenication to API has failed")
-
-
-def authenticate2():
-    """Authenticate to the REST API"""
-    global session  # pylint: disable=W0602
-    s = session
-    return s
 
 
 # Run basic Ansible function
