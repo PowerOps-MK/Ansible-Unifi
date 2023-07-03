@@ -61,7 +61,7 @@ def authenticate(module):
     # except BaseException:
     # module.fail_json(msg="Authenication to API has failed")
 
-def authenticate2:
+def authenticate2():
     """Authenticate to the REST API"""
     global session
 
