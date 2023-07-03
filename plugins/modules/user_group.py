@@ -93,16 +93,16 @@ class UserGroup(object):
 
     def _get_resource(self):
         """Get existing resources from the REST API"""
-        try:
-            resources = self._session.get(url=api_url, validate_certs=False)
-            resources_dict = self._module.from_json(resources.read())["data"]
+        # try:
+        resources = self._session.get(url=api_url, validate_certs=False)
+        resources_dict = self._module.from_json(resources.read())["data"]
 
-            for resource in resources_dict:
-                if resource["name"] == self._module.params["name"]:
-                    self._resource = f"{api_url}/{resource['_id']}"
+        for resource in resources_dict:
+            if resource["name"] == self._module.params["name"]:
+                self._resource = f"{api_url}/{resource['_id']}"
 
-        except BaseException:
-            self._module.fail_json(msg="Getting resources from API had failed")
+        # except BaseException:
+        # self._module.fail_json(msg="Getting resources from API had failed")
 
     def absent(self):
         """Remove config if not present"""
