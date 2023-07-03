@@ -70,15 +70,14 @@ result:
 
 # Modules
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import Request
+from ansible_collections.unifi.network.plugins.module_utils.create_session import (
+    authenticate2,
+)
 
 # Parameters
 site = "default"
 resource = "usergroup"
-login_url = "https://localhost:8443/api/login"
 api_url = f"https://localhost:8443/api/s/{site}/rest/{resource}"
-username = "unifi"
-password = "6VK8eK92ePP*dHR6"
 
 
 # Functions
@@ -86,25 +85,11 @@ class UserGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
-        self._session = None
+        self._session = authenticate2()
         self.changed = False
         self.result = ""
 
-        self._authenticate()
         self._get_resource()
-
-    def _authenticate(self):
-        """Authenticate to the REST API"""
-        try:
-            payload = {"username": username, "password": password}
-
-            self._session = Request()  # pylint: disable=E0602
-            self._session.post(
-                url=login_url, validate_certs=False, data=self._module.jsonify(payload)
-            )
-
-        except BaseException:
-            self._module.fail_json(msg="Authenication to API had failed")
 
     def _get_resource(self):
         """Get existing resources from the REST API"""
