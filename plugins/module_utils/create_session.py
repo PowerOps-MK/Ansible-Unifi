@@ -43,9 +43,9 @@ login_url = "https://localhost:8443/api/login"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
-payload_json = f'{{"username": "{username}", "password": "{password}"}}'
 session = Request()
-session.post(url=login_url, validate_certs=False, data=payload_json)
+module = AnsibleModule(argument_spec={})
+session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
 
 
 # Function
