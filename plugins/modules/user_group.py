@@ -71,7 +71,7 @@ result:
 # Modules
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.unifi.network.plugins.module_utils.create_session import (
-    session,
+    authenticate,
 )
 
 # Parameters
@@ -85,7 +85,7 @@ class UserGroup(object):
     def __init__(self, module):
         self._module = module
         self._resource = None
-        self._session = session
+        self._session = authenticate(module)
         self.changed = False
         self.result = ""
 
