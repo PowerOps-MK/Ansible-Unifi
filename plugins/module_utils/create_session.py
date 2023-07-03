@@ -42,8 +42,7 @@ from ansible.module_utils.urls import Request
 login_url = "https://localhost:8443/api/login"
 username = "unifi"
 password = "6VK8eK92ePP*dHR6"
-payload = {"username": username, "password": password}
-session = None
+# session = None
 
 
 # Function
