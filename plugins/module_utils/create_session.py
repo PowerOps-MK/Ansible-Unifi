@@ -44,11 +44,6 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
 
-if session is not None:
-    print("h")
-else:
-    session = None
-
 
 # Function
 def authenticate(module):
