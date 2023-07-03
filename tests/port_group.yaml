@@ -2,8 +2,6 @@
 - name: Test custom module
   hosts: localhost
   tasks:
-  - name: Create session
-    unifi.network.create_session:    
   - name: Test present portgroup
     unifi.network.port_group:
       state: present
