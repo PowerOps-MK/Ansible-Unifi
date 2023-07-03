@@ -61,6 +61,12 @@ def authenticate(module):
     # except BaseException:
     # module.fail_json(msg="Authenication to API has failed")
 
+def authenticate2:
+    """Authenticate to the REST API"""
+    global session
+
+    return session
+
 
 # Run basic Ansible function
 def main():
