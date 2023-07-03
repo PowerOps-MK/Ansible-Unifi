@@ -104,7 +104,6 @@ class FirewallGroup(object):
         payload = {"username": username, "password": password}
 
         authenticate(self._module)
-        global session  # pylint: disable=W0602
         self._session = session
 
     def _get_resource(self):
