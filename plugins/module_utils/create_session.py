@@ -35,8 +35,9 @@ changed:
 """
 
 # Modules
-from ansible.module_utils.basic import AnsibleModule
+# from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import Request
+import json
 
 # Parameters
 login_url = "https://localhost:8443/api/login"
@@ -44,8 +45,7 @@ username = "unifi"
 password = "6VK8eK92ePP*dHR6"
 payload = {"username": username, "password": password}
 session = Request()
-module3 = AnsibleModule(argument_spec={})
-session.post(url=login_url, validate_certs=False, data=module3.jsonify(payload))
+session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
 
 # Function
@@ -63,16 +63,3 @@ def authenticate(module):
 
     # except BaseException:
     # module.fail_json(msg="Authenication to API has failed")
-
-
-# Run basic Ansible function
-def main():
-    # AnsibleModule object with parameters for abstraction
-    module2 = AnsibleModule(argument_spec={})
-
-    session = authenticate(module2)
-    module2.exit_json(changed=False)
-
-
-if __name__ == "__main__":
-    main()
