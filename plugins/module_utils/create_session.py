@@ -35,7 +35,7 @@ changed:
 """
 
 # Modules
-from ansible.module_utils.basic import AnsibleModule
+# from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import Request
 
 # Parameters
@@ -49,7 +49,7 @@ if session is None:
 
 
 # Function
-def authenticate():
+def authenticate(module):
     """Authenticate to the REST API"""
     # try:
     global session
