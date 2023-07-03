@@ -64,8 +64,8 @@ def authenticate(module):
 
 def authenticate2():
     """Authenticate to the REST API"""
-    global session # pylint: disable=W0602
-    s = session 
+    global session  # pylint: disable=W0602
+    s = session
     return s
 
 
