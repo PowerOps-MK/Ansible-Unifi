@@ -50,15 +50,16 @@ def authenticate(module):
     """Authenticate to the REST API"""
     # try:
     global session
-    payload = {"username": username, "password": password}
 
-    session = Request()  # pylint: disable=E0602
-    session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
+    if session is None:
+        payload = {"username": username, "password": password}
+        session = Request()  # pylint: disable=E0602
+        session.post(url=login_url, validate_certs=False, data=module.jsonify(payload))
 
     return session
 
     # except BaseException:
-    # module.fail_json(msg="Authenication to API had failed")
+    # module.fail_json(msg="Authenication to API has failed")
 
 
 # Run basic Ansible function
