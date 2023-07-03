@@ -47,6 +47,7 @@ payload = {"username": username, "password": password}
 session = Request()
 session.post(url=login_url, validate_certs=False, data=json.dumps(payload))
 
+
 # Function
 def authenticate(module):
     """Authenticate to the REST API"""
